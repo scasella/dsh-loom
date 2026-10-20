@@ -1,0 +1,285 @@
+[
+  {
+    "id": "agent-loop",
+    "name": "@deepseek-ai/dsh-agent-loop",
+    "disabled": true
+  },
+  {
+    "id": "session-controller",
+    "name": "@deepseek-ai/dsh-api-session-controller",
+    "disabled": true
+  },
+  {
+    "id": "token-meter",
+    "name": "@deepseek-ai/dsh-token-meter",
+    "disabled": true
+  },
+  {
+    "id": "session-stats",
+    "name": "@deepseek-ai/dsh-session-stats",
+    "disabled": true
+  },
+  {
+    "id": "session-title",
+    "name": "@deepseek-ai/dsh-session-title",
+    "disabled": true
+  },
+  {
+    "id": "session-query-sqlite",
+    "name": "@deepseek-ai/dsh-session-query-sqlite",
+    "disabled": true
+  },
+  {
+    "id": "llm",
+    "name": "@deepseek-ai/dsh-llm",
+    "disabled": true
+  },
+  {
+    "id": "llm-pi-ai",
+    "name": "@deepseek-ai/dsh-llm-pi-ai",
+    "disabled": true
+  },
+  {
+    "id": "api-remotes",
+    "name": "@deepseek-ai/dsh-api-remotes",
+    "disabled": true
+  },
+  {
+    "id": "ui-conversation",
+    "name": "@deepseek-ai/dsh-client-ui-conversation",
+    "disabled": true
+  },
+  {
+    "id": "ui-chat",
+    "name": "@deepseek-ai/dsh-client-ui-chat",
+    "disabled": true
+  },
+  {
+    "id": "ui-tool",
+    "name": "@deepseek-ai/dsh-client-ui-tool",
+    "disabled": true
+  },
+  {
+    "id": "ui-workspace",
+    "name": "@deepseek-ai/dsh-client-ui-workspace",
+    "disabled": true
+  },
+  {
+    "id": "ui-shortcuts",
+    "name": "@deepseek-ai/dsh-client-ui-shortcuts",
+    "disabled": true
+  },
+  {
+    "id": "ui-subagent",
+    "name": "@deepseek-ai/dsh-client-ui-subagent",
+    "disabled": true
+  },
+  {
+    "id": "ui-settings-models",
+    "name": "@deepseek-ai/dsh-client-ui-settings-models",
+    "disabled": true
+  },
+  {
+    "id": "permission",
+    "config": {
+      "presets": {
+        "read-only": {
+          "sandbox": "read-only",
+          "approval": "ask"
+        },
+        "workspace-write": {
+          "sandbox": "workspace-write",
+          "approval": "ask"
+        },
+        "danger-full-access": {
+          "sandbox": "danger-full-access",
+          "approval": "never"
+        },
+        "loom-child": {
+          "sandbox": "read-only",
+          "approval": "never"
+        }
+      }
+    }
+  },
+  {
+    "insert": [
+      {
+        "id": "loom-metadata",
+        "name": "./dist/index.js"
+      },
+      {
+        "id": "loom-compat-agent-loop",
+        "name": "./dist/compat/agent-loop/index.js",
+        "inject": [
+          "loomMetadata"
+        ],
+        "config": {
+          "agents": []
+        }
+      },
+      {
+        "id": "loom-compat-session-controller",
+        "name": "./dist/compat/session-controller/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-token-meter",
+        "name": "./dist/compat/token-meter/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-session-stats",
+        "name": "./dist/compat/session-stats/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-session-title",
+        "name": "./dist/compat/session-title/index.js",
+        "inject": [
+          "loomMetadata"
+        ],
+        "config": {
+          "fallbackMaxWords": 5,
+          "fallbackMaxBytes": 40,
+          "maxTitleBytes": 80
+        }
+      },
+      {
+        "id": "loom-compat-session-query-sqlite",
+        "name": "./dist/compat/session-query-sqlite/index.js",
+        "inject": [
+          "loomMetadata"
+        ],
+        "config": {
+          "path": ":memory:",
+          "openAt": "first-search"
+        }
+      },
+      {
+        "id": "loom-compat-llm",
+        "name": "./dist/compat/llm/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-llm-pi-ai",
+        "name": "./dist/compat/llm-pi-ai/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-api-remotes",
+        "name": "./dist/compat/api-remotes/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-conversation",
+        "name": "./dist/compat/ui-conversation/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-chat",
+        "name": "./dist/compat/ui-chat/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-tool",
+        "name": "./dist/compat/ui-tool/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-workspace",
+        "name": "./dist/compat/ui-workspace/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-shortcuts",
+        "name": "./dist/compat/ui-shortcuts/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-subagent",
+        "name": "./dist/compat/ui-subagent/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-ui-settings-models",
+        "name": "./dist/compat/ui-settings-models/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-compat-client-ui-loom",
+        "name": "./dist/compat/client-ui-loom/index.js",
+        "inject": [
+          "loomMetadata"
+        ]
+      },
+      {
+        "id": "loom-runtime",
+        "name": "cordis:group",
+        "group": true,
+        "isolate": {
+          "worktrees": true
+        },
+        "config": [
+          {
+            "id": "loom",
+            "name": "./dist/loom/index.js",
+            "inject": [
+              "loomMetadata"
+            ]
+          },
+          {
+            "id": "loom-worktree",
+            "name": "./dist/worktree/index.js"
+          },
+          {
+            "id": "tool-loom",
+            "name": "./dist/tool-loom/index.js",
+            "config": {
+              "autoloom": {
+                "childPermissionPreset": "loom-child"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "loom-compatibility",
+        "name": "./dist/compat/readiness/index.js"
+      }
+    ]
+  },
+  {
+    "id": "web-runtime",
+    "inject": [
+      "webStartup",
+      "loomCompatibility"
+    ]
+  }
+]

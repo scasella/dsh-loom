@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "compat/llm/index": "src/llm-compat/runtime.ts",
+    "compat/llm-pi-ai/index": "src/llm-compat/pi-ai.ts"
+  },
+  "aliases": {
+    "@deepseek-ai/dsh-llm": "vendor/harness/packages/llm/llm/src/index.ts",
+    "@deepseek-ai/dsh-llm/assistant-stream": "vendor/harness/packages/llm/llm/src/assistant-stream.ts",
+    "@deepseek-ai/dsh-llm/brand": "vendor/harness/packages/llm/llm/src/brand.ts",
+    "@deepseek-ai/dsh-llm/message": "vendor/harness/packages/llm/llm/src/message.ts",
+    "@deepseek-ai/dsh-llm/types": "vendor/harness/packages/llm/llm/src/types.ts",
+    "@deepseek-ai/dsh-llm/typert": "generated/llm/typert.host.js",
+    "@deepseek-ai/dsh-llm/remote": "generated/llm/typert.remote-client.js",
+    "@deepseek-ai/dsh-llm-pi-ai": "vendor/harness/packages/llm/llm-pi-ai/src/index.ts"
+  },
+  "rows": [
+    {
+      "stockId": "llm",
+      "stockName": "@deepseek-ai/dsh-llm",
+      "compatId": "loom-compat-llm",
+      "path": "./dist/compat/llm/index.js",
+      "service": "llm",
+      "hostTypes": "generated/llm/typert.host.js",
+      "clientRemote": "generated/llm/typert.remote-client.js"
+    },
+    {
+      "stockId": "llm-pi-ai",
+      "stockName": "@deepseek-ai/dsh-llm-pi-ai",
+      "compatId": "loom-compat-llm-pi-ai",
+      "path": "./dist/compat/llm-pi-ai/index.js",
+      "inject": [
+        "llm"
+      ],
+      "settingsNamespace": "loom-compat-llm-pi-ai",
+      "settingsNamespaceResolution": "Use ctx.fiber.entry.options.id; do not hardcode the stock namespace.",
+      "preserveConfig": [
+        "providers"
+      ],
+      "clientRequirement": "The Models page maps the stock pi-ai namespace to this compatibility row."
+    }
+  ],
+  "stockIdentityImports": {
+    "@loom/stock/@deepseek-ai/dsh-llm": [
+      "LlmError",
+      "LlmAdapter",
+      "HarnessError",
+      "markAgentLoopRequest",
+      "isAgentLoopRequest",
+      "APP_IDENTITY",
+      "attributionHeaders",
+      "userAgent"
+    ]
+  },
+  "dependencies": {
+    "zod": "4.4.3"
+  },
+  "sdk": {
+    "name": "@earendil-works/pi-ai",
+    "resolution": "external-stock-installation",
+    "subpaths": "all imported SDK subpaths must resolve from the official stock installation",
+    "mustNotInstallRawReplacement": true,
+    "referencePatch": "patches/@earendil-works__pi-ai@1.1.0.patch",
+    "note": "The official installed adapter range resolves pi-ai 1.3.0, whereas the reference checkout used patched 1.1.0. These bytes differ. Compatibility proofs exercise the actual official 1.3.0 SDK; the package must share that installed SDK rather than downloading a second implementation.",
+    "referenceVersion": "1.1.0",
+    "testedStockVersion": "1.3.0",
+    "testedStockEntry": "@earendil-works/pi-ai/dist/api/openai-completions.js",
+    "stockTree": {
+      "sha256": "7c55da4f96575486e598586a77337c0419c6c82fdfe7e1dd6ada4b2d396ab5d4",
+      "files": 837,
+      "algorithm": "sorted relative path + NUL + raw SHA256 digest + newline"
+    },
+    "referenceTree": {
+      "sha256": "a60439e6792d528f4b3390bfc3f4425151eabcbcee2af72e33d3ce400a5c7479",
+      "files": 829,
+      "algorithm": "sorted relative path + NUL + raw SHA256 digest + newline"
+    },
+    "referencePatchSha256": "66eaf960054f10441b93ac3857114e96c1901f6d183713e2f21437b007111644",
+    "comparedFiles": [
+      {
+        "path": "package.json",
+        "referenceSha256": "a8f10d5157b335379ae00edf9c25ae7a15bfc0f3a76107d4376a3779bb5b2995",
+        "stockSha256": "4e9ed07b06a91d844485874c251f312b610d015a4a4fd32c78cde58a7862a3f1",
+        "equal": false
+      },
+      {
+        "path": "dist/index.js",
+        "referenceSha256": "25554deede6f6a5955a008b81c95a1b0ed13ba10bebb1cd5790869eb39d80374",
+        "stockSha256": "3939ec196726eb4c44583fc7592a0fc9076f37565103b2a8cae27b04bf2cd91a",
+        "equal": false
+      },
+      {
+        "path": "dist/api/openai-completions.js",
+        "referenceSha256": "fba125cffc926f44bbbad10ecb6301516cff027a3ef526cefe25076a96c5c8fb",
+        "stockSha256": "4b3875e5ec18c5e2d06ce12409feb2554563fd2c392a5c1773af968b265e2bea",
+        "equal": false
+      },
+      {
+        "path": "dist/api/anthropic-messages.js",
+        "referenceSha256": "320ae8d5d8f459f9f0e01c83a0da8990196363d9fac071497ed27f21fdfbb1ca",
+        "stockSha256": "2a61739aa1e42d42c0351f10fef371b3efd544bc746a97cf6d6f68e4dfc0ef96",
+        "equal": false
+      },
+      {
+        "path": "dist/models.js",
+        "referenceSha256": "0911bab242726dc56517fe62ca422d0602d6eab8aa63841a560f61e1c35a0cd7",
+        "stockSha256": "5624951d7fa7c436427b28ef6975051b91690e5e6341d84ab89ad3f1e1adc3d8",
+        "equal": false
+      },
+      {
+        "path": "dist/providers/all.js",
+        "referenceSha256": "b152eb706e7968debded248f538fda008869e93fea2042ba089fe64793c40340",
+        "stockSha256": "b152eb706e7968debded248f538fda008869e93fea2042ba089fe64793c40340",
+        "equal": true
+      }
+    ]
+  },
+  "sourceEdits": {
+    "vendor/harness/packages/llm/llm/src/index.ts": "Import and re-export stock LlmError/LlmAdapter; retain the complete modified LlmRuntime and capability checks.",
+    "vendor/harness/packages/llm/llm/src/error.ts": "Use stock HarnessError while retaining pure error utilities.",
+    "vendor/harness/packages/llm/llm/src/call-config.ts": "Re-export stock request marker functions and retain topLogprobs-aware equality.",
+    "vendor/harness/packages/llm/llm/src/attribution.ts": "Re-export stock attribution and AppIdentity; never resolve a package manifest relative to the relocated shared chunk.",
+    "vendor/harness/packages/llm/llm-pi-ai/src/catalog.ts": "Classify SDK 1.3 supportsMidConvoEffort as withheld, preserving installed provider catalog capability and the exhaustive compat drift gate."
+  },
+  "tests": [
+    "tests/llm-compat.test.mjs"
+  ],
+  "verification": {
+    "command": "DEEPSEEK_API_KEY= node --test tests/llm-compat.test.mjs",
+    "testsPassed": 11,
+    "stockRuntimeVersion": "0.2.1-rc.2",
+    "network": "No provider requests: SDK fetch replaced with an in-process SSE Response.",
+    "checks": [
+      "stock error and provider class identities",
+      "shared stock request WeakSet",
+      "prepared topLogprobs mismatch and once-only dispatch",
+      "capability, tool history and thinking refusals",
+      "aligned probability persistence and stock-reader round trip",
+      "missing and misaligned probabilities discarded",
+      "exact final DeepSeek prefix validation",
+      "actual stock SDK prefix, probabilities, stop, provider pinning and thinking-off serialization",
+      "relocated dist/shared import without an adjacent package manifest and exact stock attribution identity",
+      "SDK 1.3 Responses mid-conversation effort remains catalog-owned and manual override fails loudly"
+    ]
+  }
+}

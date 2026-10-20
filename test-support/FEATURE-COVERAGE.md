@@ -1,0 +1,23 @@
+# Standalone Host verification
+
+Run `DEEPSEEK_API_KEY= node --test tests/features.test.mjs` from the standalone project after the candidate tarball is installed in an isolated Web profile. Set `LOOM_INSTALLED_PACKAGE` to that profile's installed `node_modules/@scasella/dsh-loom` directory and `LOOM_STOCK_NODE_MODULES` to the independent official Harness installation's `node_modules` directory. The local defaults point to the sibling `test-home` profile and `upstream-install` installation used for this extraction.
+
+The test composition loads official Harness 0.2.1-rc.2 services by absolute installed file URL, mounts original AppBoot `PluginPackages` with the real loaded profile, and imports the candidate's compiled Host entries from its installed tarball. Importing project `dist` beside development dependencies would load a second Session implementation and is deliberately avoided. These are integration checks of the candidate against the published runtime, with no reference-source imports and no paid model calls.
+
+Eight tests passed on 2026-10-19. Every test owns a unique temporary Git repository and JSONL session directory; teardown drains the Cordis context before removing its files. Workspace archive, attachment admission, uploads and the non-interactive permission preset use fixture collaborators. The model adapter is deterministic. The command-output test executes a real `node --test` child process in a real isolated checkout; its child environment removes only Node's inherited test-runner context marker.
+
+| Plan features | Checked behavior |
+| --- | --- |
+| L1, L10 data | Original history preserved, fork lineage projection, own/inherited token and timing buckets. Sidebar nesting and titles require browser checks. |
+| L3, L4, L11, L13, L23 | Regenerate multiple children; edit; steer; sampled prompt variants and variant grouping; explicit route and subsequent sibling route; request dedupe; invalid count rejected before a model call. |
+| L5 Host | Writable branch queue has one admitted child; queued child has no Session; cancelling the queued index prevents any additional model call. |
+| L6, L7, L12, L25 | Real Git snapshot carries tracked working edits and excludes untracked files; isolated branches write the same path differently; Compare, diff and list-price estimate; command summary from own logged real output despite contradictory tool metadata; dirty/conflict Apply refusals preserve bytes; Apply writes source and removes its checkout; Adopt records choice and archives sibling; Discard removes the other checkout while retaining Session history. |
+| L14 and continue | Recorded tool content replaced in a fork; source unchanged; child continuation marker present; no new human prompt; next request/answer sees the edited result. |
+| L15 | Marking a cold Session resumes it and flushes exactly one idempotent record; another independent Host reload reads its projection. |
+| L16, L17, Weave | Exact authored prefix logged before every auxiliary dispatch; two completed candidates retain captured probabilities; no Chat messages added; initial lead-then-burst then warm burst scheduling; bounded alternative probe. Separate LLM tests exercise the actual installed pi-ai SDK serialization and capability refusals. |
+| L18, L19 | Choosing among two Weave candidates yields one curation bit and one selected model token; repeated choice writes nothing; replacement choice updates selection; path/siblings/kept exports use the real registered download route and include curation records; persisted Weave nodes/choice survive independent Host reload. |
+| L22 | Real compiled SQLite provider and controller filter search matches by own versus inherited events and explicit Session IDs. |
+| L24 | All five tools execute through the original stock tool pipeline; generated prompts carry source `loom`; permission preset precedes the prompt; read, wait, keep and cull succeed; exhausted branch budget refuses expansion without another fork. |
+| L26 | Reconstructed request contains route, inherited messages and own steering text from the actual model call. |
+
+This Host lane does not verify visible controls, ARIA trees, the sibling pager, Multiverse page, keyboard bindings, mobile layout or reasoning-card presentation (L2, L8, L9, L20, L21, L27), nor does it substitute for provider live tests. It does not claim exhaustive path or statement coverage, running-sibling archive behavior, every autoloom budget watcher, replay-corpus parity, or SDK output snapshot parity. The release verification report must list the independent browser/provider and source-compatibility lanes alongside these results.

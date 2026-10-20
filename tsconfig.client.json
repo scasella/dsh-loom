@@ -1,0 +1,232 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": [
+      "react",
+      "react-dom"
+    ],
+    "paths": {
+      "@deepseek-ai/dsh-api-session-controller": [
+        "./vendor/harness/packages/api/session-controller/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-api-session-controller/types": [
+        "./vendor/harness/packages/api/session-controller/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-api-session-controller/remote-events": [
+        "./vendor/harness/packages/api/session-controller/src/remote-events.ts"
+      ],
+      "@deepseek-ai/dsh-api-session-controller/client": [
+        "./vendor/harness/packages/api/session-controller/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-shortcuts": [
+        "./vendor/harness/packages/client/shortcuts/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-shortcuts/client": [
+        "./vendor/harness/packages/client/shortcuts/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-shortcuts/protocol": [
+        "./vendor/harness/packages/client/shortcuts/src/protocol.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-chat": [
+        "./vendor/harness/packages/client/ui-chat/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-chat/client": [
+        "./vendor/harness/packages/client/ui-chat/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-conversation": [
+        "./vendor/harness/packages/client/ui-conversation/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-conversation/client": [
+        "./vendor/harness/packages/client/ui-conversation/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-shortcuts": [
+        "./vendor/harness/packages/client/ui-shortcuts/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-shortcuts/client": [
+        "./vendor/harness/packages/client/ui-shortcuts/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-subagent": [
+        "./vendor/harness/packages/client/ui-subagent/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-subagent/client": [
+        "./vendor/harness/packages/client/ui-subagent/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-tool": [
+        "./vendor/harness/packages/client/ui-tool/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-tool/client": [
+        "./vendor/harness/packages/client/ui-tool/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-workspace": [
+        "./vendor/harness/packages/client/ui-workspace/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-client-ui-workspace/client": [
+        "./vendor/harness/packages/client/ui-workspace/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-agent": [
+        "./node_modules/@deepseek-ai/dsh-agent/lib/types/index.d.ts"
+      ],
+      "@deepseek-ai/dsh-agent/types": [
+        "./vendor/harness/packages/core/agent/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-agent-loop": [
+        "./vendor/harness/packages/core/agent-loop/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-session": [
+        "./node_modules/@deepseek-ai/dsh-session/lib/types/index.d.ts"
+      ],
+      "@deepseek-ai/dsh-session/types": [
+        "./vendor/harness/packages/core/session/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-session/fork": [
+        "./vendor/harness/packages/core/session/src/fork.ts"
+      ],
+      "@deepseek-ai/dsh-session/surface": [
+        "./vendor/harness/packages/core/session/src/surface.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-client-ui-loom": [
+        "./vendor/harness/packages/experimental/client-ui-loom/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-client-ui-loom/client": [
+        "./vendor/harness/packages/experimental/client-ui-loom/src/client/index.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom": [
+        "./vendor/harness/packages/experimental/loom/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom/types": [
+        "./vendor/harness/packages/experimental/loom/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom/family": [
+        "./vendor/harness/packages/experimental/loom/src/family.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom-bundle": [
+        "./vendor/harness/packages/experimental/loom-bundle/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-tool-loom": [
+        "./vendor/harness/packages/experimental/tool-loom/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-worktree": [
+        "./vendor/harness/packages/experimental/worktree/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-llm": [
+        "./vendor/harness/packages/llm/llm/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-llm/types": [
+        "./vendor/harness/packages/llm/llm/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-llm/brand": [
+        "./vendor/harness/packages/llm/llm/src/brand.ts"
+      ],
+      "@deepseek-ai/dsh-llm/message": [
+        "./vendor/harness/packages/llm/llm/src/message.ts"
+      ],
+      "@deepseek-ai/dsh-llm/assistant-stream": [
+        "./vendor/harness/packages/llm/llm/src/assistant-stream.ts"
+      ],
+      "@deepseek-ai/dsh-llm-pi-ai": [
+        "./vendor/harness/packages/llm/llm-pi-ai/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-token-meter": [
+        "./vendor/harness/packages/llm/token-meter/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-token-meter/client": [
+        "./vendor/harness/packages/llm/token-meter/src/client.ts"
+      ],
+      "@deepseek-ai/dsh-token-meter/estimate": [
+        "./vendor/harness/packages/llm/token-meter/src/estimate.ts"
+      ],
+      "@deepseek-ai/dsh-session-query": [
+        "./vendor/harness/packages/session-query/session-query/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-session-query-sqlite": [
+        "./vendor/harness/packages/session-query/session-query-sqlite/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-session-stats": [
+        "./vendor/harness/packages/session/session-stats/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-session-stats/types": [
+        "./vendor/harness/packages/session/session-stats/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-session-stats/client": [
+        "./vendor/harness/packages/session/session-stats/src/client.ts"
+      ],
+      "@deepseek-ai/dsh-session-title": [
+        "./vendor/harness/packages/session/session-title/src/index.ts"
+      ],
+      "@deepseek-ai/dsh-session-title/types": [
+        "./vendor/harness/packages/session/session-title/src/types.ts"
+      ],
+      "@deepseek-ai/dsh-session-title/client": [
+        "./vendor/harness/packages/session/session-title/src/client.ts"
+      ],
+      "@deepseek-ai/dsh-llm-replay": [
+        "./vendor/harness/packages/test-support/llm-replay/src/index.ts"
+      ],
+      "@loom/client-compat/BottomSheet": [
+        "./src/client-compat/BottomSheet.tsx"
+      ],
+      "@loom/stock/@deepseek-ai/cordis": [
+        "./node_modules/@deepseek-ai/cordis/./lib/types/index.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-agent": [
+        "./generated/stock-identity/agent.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-api-session-controller": [
+        "./generated/stock-identity/session-controller.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-session-query": [
+        "./generated/stock-identity/session-query.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-session-title": [
+        "./generated/stock-identity/session-title.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-llm": [
+        "./generated/stock-identity/llm.d.ts"
+      ],
+      "@loom/stock/@deepseek-ai/dsh-app-boot": [
+        "./node_modules/@deepseek-ai/dsh-app-boot/./lib/types/index.d.ts"
+      ],
+      "@deepseek-ai/dsh-llm/typert": [
+        "./generated/llm/typert.host.d.ts"
+      ],
+      "@deepseek-ai/dsh-llm/remote": [
+        "./generated/llm/typert.remote-client.d.ts"
+      ],
+      "@deepseek-ai/dsh-api-session-controller/typert": [
+        "./generated/session-controller/typert.host.d.ts"
+      ],
+      "@deepseek-ai/dsh-api-session-controller/remote": [
+        "./generated/session-controller/typert.remote-client.d.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom/typert": [
+        "./generated/loom/typert.host.d.ts"
+      ],
+      "@deepseek-ai/dsh-experimental-loom/remote": [
+        "./generated/loom/typert.remote-client.d.ts"
+      ],
+      "@deepseek-ai/dsh-llm/attribution": [
+        "./node_modules/@deepseek-ai/dsh-llm/lib/types/attribution.d.ts"
+      ],
+      "@deepseek-ai/dsh-api-remotes/client": [
+        "./src/client-compat/api-remotes.ts"
+      ]
+    }
+  },
+  "files": [
+    "vendor/harness/packages/api/session-controller/src/client/index.ts",
+    "src/client-compat/api-remotes.ts",
+    "vendor/harness/packages/client/ui-conversation/src/client/index.ts",
+    "vendor/harness/packages/client/ui-chat/src/client/index.ts",
+    "vendor/harness/packages/client/ui-tool/src/client/index.ts",
+    "vendor/harness/packages/client/ui-workspace/src/client/index.ts",
+    "vendor/harness/packages/client/ui-shortcuts/src/client/index.ts",
+    "vendor/harness/packages/client/ui-subagent/src/client/index.ts",
+    "vendor/harness/packages/client/ui-settings-models/src/client/index.ts",
+    "vendor/harness/packages/experimental/client-ui-loom/src/client/index.ts"
+  ],
+  "include": [
+    "vendor/harness/packages/*/*/src/css-modules.d.ts",
+    "generated/client-environment.d.ts"
+  ]
+}

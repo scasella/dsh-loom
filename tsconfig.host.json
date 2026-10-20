@@ -1,0 +1,34 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  },
+  "files": [
+    "src/index.ts",
+    "src/profile-preflight.ts",
+    "src/host-compat/agent-loop.ts",
+    "src/host-compat/session-controller.ts",
+    "src/host-compat/token-meter.ts",
+    "src/host-compat/session-stats.ts",
+    "src/host-compat/session-title.ts",
+    "src/host-compat/session-query-sqlite.ts",
+    "src/host-compat/readiness.ts",
+    "src/llm-compat/runtime.ts",
+    "src/llm-compat/pi-ai.ts",
+    "vendor/harness/packages/api/session-controller/src/index.ts",
+    "src/client-compat/api-remotes-host.ts",
+    "vendor/harness/packages/client/ui-conversation/src/index.ts",
+    "vendor/harness/packages/client/ui-chat/src/index.ts",
+    "vendor/harness/packages/client/ui-tool/src/index.ts",
+    "vendor/harness/packages/client/ui-workspace/src/index.ts",
+    "vendor/harness/packages/client/ui-shortcuts/src/index.ts",
+    "vendor/harness/packages/client/ui-subagent/src/index.ts",
+    "vendor/harness/packages/client/ui-settings-models/src/index.ts",
+    "vendor/harness/packages/experimental/client-ui-loom/src/index.ts",
+    "vendor/harness/packages/experimental/loom/src/index.ts",
+    "vendor/harness/packages/experimental/worktree/src/index.ts",
+    "vendor/harness/packages/experimental/tool-loom/src/index.ts"
+  ]
+}

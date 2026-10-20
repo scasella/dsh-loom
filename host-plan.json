@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "entries": {
+    "compat/agent-loop": "src/host-compat/agent-loop.ts",
+    "compat/session-controller": "src/host-compat/session-controller.ts",
+    "compat/token-meter": "src/host-compat/token-meter.ts",
+    "compat/session-stats": "src/host-compat/session-stats.ts",
+    "compat/session-title": "src/host-compat/session-title.ts",
+    "compat/session-query-sqlite": "src/host-compat/session-query-sqlite.ts",
+    "compat/readiness": "src/host-compat/readiness.ts"
+  },
+  "aliases": {
+    "@deepseek-ai/dsh-agent": "src/host-compat/agent.ts",
+    "@deepseek-ai/dsh-api-session-controller": "vendor/harness/packages/api/session-controller/src/index.ts",
+    "@deepseek-ai/dsh-api-session-controller/types": "vendor/harness/packages/api/session-controller/src/types.ts",
+    "@deepseek-ai/dsh-session-query": "vendor/harness/packages/session-query/session-query/src/index.ts",
+    "@deepseek-ai/dsh-session-title": "vendor/harness/packages/session/session-title/src/index.ts",
+    "@deepseek-ai/dsh-token-meter": "vendor/harness/packages/llm/token-meter/src/index.ts",
+    "@deepseek-ai/dsh-token-meter/client": "vendor/harness/packages/llm/token-meter/src/client.ts",
+    "@deepseek-ai/dsh-session-stats": "vendor/harness/packages/session/session-stats/src/index.ts",
+    "@deepseek-ai/cordis": "src/host-compat/cordis.ts"
+  },
+  "providers": [
+    {
+      "stockId": "agent-loop",
+      "stockModule": "@deepseek-ai/dsh-agent-loop",
+      "entry": "compat/agent-loop",
+      "candidateReplacementId": "loom-compat-agent-loop",
+      "service": "agentLoop",
+      "configDefaults": {
+        "agents": []
+      }
+    },
+    {
+      "stockId": "session-controller",
+      "stockModule": "@deepseek-ai/dsh-api-session-controller",
+      "entry": "compat/session-controller",
+      "candidateReplacementId": "loom-compat-session-controller",
+      "service": "sessionController"
+    },
+    {
+      "stockId": "token-meter",
+      "stockModule": "@deepseek-ai/dsh-token-meter",
+      "entry": "compat/token-meter",
+      "candidateReplacementId": "loom-compat-token-meter",
+      "service": "tokenMeter"
+    },
+    {
+      "stockId": "session-stats",
+      "stockModule": "@deepseek-ai/dsh-session-stats",
+      "entry": "compat/session-stats",
+      "candidateReplacementId": "loom-compat-session-stats",
+      "additionalService": "loomSessionStatsCompatibility"
+    },
+    {
+      "stockId": "session-title",
+      "stockModule": "@deepseek-ai/dsh-session-title",
+      "entry": "compat/session-title",
+      "candidateReplacementId": "loom-compat-session-title",
+      "service": "sessionTitle",
+      "configDefaults": {
+        "fallbackMaxWords": 5,
+        "fallbackMaxBytes": 40,
+        "maxTitleBytes": 80
+      }
+    },
+    {
+      "stockId": "session-query-sqlite",
+      "stockModule": "@deepseek-ai/dsh-session-query-sqlite",
+      "entry": "compat/session-query-sqlite",
+      "candidateReplacementId": "loom-compat-session-query-sqlite",
+      "service": "sessionQuery",
+      "configDefaults": {
+        "path": ":memory:",
+        "openAt": "first-search"
+      }
+    },
+    {
+      "entry": "compat/readiness",
+      "candidateReplacementId": "loom-compat-readiness",
+      "service": "loomCompatibility",
+      "insertOnly": true,
+      "inject": [
+        "pluginPackages",
+        "loomMetadata",
+        "agentLoop",
+        "sessionController",
+        "llm",
+        "tokenMeter",
+        "sessionTitle",
+        "sessionQuery",
+        "sessionProjections",
+        "loomSessionStatsCompatibility",
+        "loom"
+      ],
+      "requiredConsumer": {
+        "stockId": "web-runtime",
+        "additionalInject": [
+          "loomCompatibility"
+        ]
+      }
+    }
+  ],
+  "stockIdentitySpecifiers": [
+    "@deepseek-ai/dsh-agent",
+    "@deepseek-ai/dsh-api-session-controller",
+    "@deepseek-ai/dsh-session-query",
+    "@deepseek-ai/dsh-session-title",
+    "@deepseek-ai/cordis",
+    "@deepseek-ai/dsh-typert-protocol"
+  ],
+  "compositionConstraints": [
+    "An id-targeted name field is a guard and cannot replace a module name. Disable the stock row and insert the compatibility provider.",
+    "pi-ai settings and Models UI use entry.options.id as the namespace; coordinate a Settings/Models bridge if replacing with a different id.",
+    "Stock ConfigEditor.entries excludes nested Include rows; a nested subtree requires a compatible config-editor/settings implementation.",
+    "Disabled required stock rows are ignored by startup audit. Fail loudly if an inserted compatibility provider fails to activate.",
+    "The base session-query service is abstract; only its SQLite implementation needs a configured replacement row.",
+    "Build all Host entries in one ESM splitting graph so private continuation and API error imports retain identity.",
+    "Do not privately copy the installed Agent registry or dispatch: the agent facade re-exports their original identities.",
+    "Root composition uses distinct root ids loom-compat-<stockId>; Models UI maps the pi-ai settings namespace to loom-compat-llm-pi-ai.",
+    "Published Cordis 4.0.5 erases FiberState as a const enum. The private facade materializes its exact numeric values and re-exports all installed runtime identities; this must be verified when changing supported Cordis versions."
+  ],
+  "readiness": {
+    "entry": "compat/readiness",
+    "service": "loomCompatibility",
+    "format": 1,
+    "runtimeVersionSource": "stock @deepseek-ai/dsh-app-boot.getDshRuntimeVersion()",
+    "requiredRuntimeSource": "package.json engines.dsh",
+    "packageVersionSource": "package.json version",
+    "requiredWebRuntimeDependency": "loomCompatibility",
+    "providerIdentityChecks": [
+      "agentLoop",
+      "sessionController",
+      "llm",
+      "tokenMeter",
+      "sessionTitle",
+      "sessionQuery",
+      "loom"
+    ],
+    "projectionVersionCheck": "sessionStats",
+    "metadataDependency": "loomMetadata",
+    "requiredSdkVersion": "1.3.0",
+    "sdkVersionSource": "ctx.pluginPackages.packageOf('@earendil-works/pi-ai', import.meta.url).version"
+  }
+}

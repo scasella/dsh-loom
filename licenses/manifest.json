@@ -1,0 +1,291 @@
+{
+  "basis": [
+    "dist/build/host-inputs.json",
+    "dist/build/client-inputs.json"
+  ],
+  "bundledPackages": [
+    {
+      "name": "@deepseek-ai/cosmokit",
+      "version": "1.8.6",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) 2021-present Shigma"
+      ],
+      "sourceManifest": "node_modules/@deepseek-ai/cosmokit/package.json",
+      "sourceLicense": "node_modules/@deepseek-ai/cosmokit/LICENSE",
+      "licenseFile": "licenses/deepseek-ai-cosmokit/LICENSE",
+      "licenseSha256": "034fb52b1d57360ecbae6cb1632a88f86fd7c3d3f5631a5f082710203dda0be7",
+      "bundledInputs": [
+        "node_modules/@deepseek-ai/cosmokit/lib/index.js"
+      ],
+      "browserFaces": [
+        "ui-chat",
+        "ui-conversation",
+        "ui-settings-models"
+      ]
+    },
+    {
+      "name": "@deepseek-ai/schemastery",
+      "version": "3.18.5",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) 2021-present Shigma"
+      ],
+      "sourceManifest": "node_modules/@deepseek-ai/schemastery/package.json",
+      "sourceLicense": "node_modules/@deepseek-ai/schemastery/LICENSE",
+      "licenseFile": "licenses/deepseek-ai-schemastery/LICENSE",
+      "licenseSha256": "034fb52b1d57360ecbae6cb1632a88f86fd7c3d3f5631a5f082710203dda0be7",
+      "bundledInputs": [
+        "node_modules/@deepseek-ai/schemastery/lib/index.cjs"
+      ],
+      "browserFaces": [
+        "ui-chat",
+        "ui-conversation",
+        "ui-settings-models"
+      ]
+    },
+    {
+      "name": "@lexical/clipboard",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/clipboard/package.json",
+      "sourceLicense": "node_modules/@lexical/clipboard/LICENSE",
+      "licenseFile": "licenses/lexical-clipboard/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/clipboard/dist/LexicalClipboard.js",
+        "node_modules/@lexical/clipboard/dist/LexicalClipboard.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/dragon",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/dragon/package.json",
+      "sourceLicense": "node_modules/@lexical/dragon/LICENSE",
+      "licenseFile": "licenses/lexical-dragon/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/dragon/dist/LexicalDragon.js",
+        "node_modules/@lexical/dragon/dist/LexicalDragon.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/extension",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/extension/package.json",
+      "sourceLicense": "node_modules/@lexical/extension/LICENSE",
+      "licenseFile": "licenses/lexical-extension/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/extension/dist/LexicalExtension.js",
+        "node_modules/@lexical/extension/dist/LexicalExtension.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/history",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/history/package.json",
+      "sourceLicense": "node_modules/@lexical/history/LICENSE",
+      "licenseFile": "licenses/lexical-history/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/history/dist/LexicalHistory.js",
+        "node_modules/@lexical/history/dist/LexicalHistory.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/html",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/html/package.json",
+      "sourceLicense": "node_modules/@lexical/html/LICENSE",
+      "licenseFile": "licenses/lexical-html/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/html/dist/LexicalHtml.js",
+        "node_modules/@lexical/html/dist/LexicalHtml.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/plain-text",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/plain-text/package.json",
+      "sourceLicense": "node_modules/@lexical/plain-text/LICENSE",
+      "licenseFile": "licenses/lexical-plain-text/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/plain-text/dist/LexicalPlainText.js",
+        "node_modules/@lexical/plain-text/dist/LexicalPlainText.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/selection",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/selection/package.json",
+      "sourceLicense": "node_modules/@lexical/selection/LICENSE",
+      "licenseFile": "licenses/lexical-selection/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/selection/dist/LexicalSelection.js",
+        "node_modules/@lexical/selection/dist/LexicalSelection.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/text",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/text/package.json",
+      "sourceLicense": "node_modules/@lexical/text/LICENSE",
+      "licenseFile": "licenses/lexical-text/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/text/dist/LexicalText.js",
+        "node_modules/@lexical/text/dist/LexicalText.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@lexical/utils",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/@lexical/utils/package.json",
+      "sourceLicense": "node_modules/@lexical/utils/LICENSE",
+      "licenseFile": "licenses/lexical-utils/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/@lexical/utils/dist/LexicalUtils.js",
+        "node_modules/@lexical/utils/dist/LexicalUtils.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    },
+    {
+      "name": "@preact/signals-core",
+      "version": null,
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) 2022-present Preact Team"
+      ],
+      "sourceManifest": "node_modules/@preact/signals-core/package.json",
+      "sourceLicense": "node_modules/@preact/signals-core/LICENSE",
+      "licenseFile": "licenses/preact-signals-core/LICENSE",
+      "licenseSha256": "a11fc89e4c6b118854c7a667734a0b2e6bf2af5e45c6686de31adbccc8f3ae8d",
+      "bundledInputs": [
+        "node_modules/@lexical/extension/dist/LexicalExtension.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ],
+      "embeddedBy": "@lexical/extension@0.49.0",
+      "declaredDependency": "^1.14.1",
+      "installedLicenseSourceVersion": "1.14.4",
+      "versionNote": "The published Lexical extension file contains Preact Signals code; its exact embedded version is not stated. The installed dependency provides this license text."
+    },
+    {
+      "name": "clsx",
+      "version": "2.1.1",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)"
+      ],
+      "sourceManifest": "node_modules/clsx/package.json",
+      "sourceLicense": "node_modules/clsx/license",
+      "licenseFile": "licenses/clsx/LICENSE",
+      "licenseSha256": "9a9edad7baae52622bddf3c15b2ef8a33d2c89f2d25408ad13e8a7481c6b0c97",
+      "bundledInputs": [
+        "node_modules/clsx/dist/clsx.js"
+      ],
+      "browserFaces": [
+        "client-ui-loom",
+        "ui-conversation",
+        "ui-shortcuts",
+        "ui-tool",
+        "ui-workspace"
+      ]
+    },
+    {
+      "name": "lexical",
+      "version": "0.49.0",
+      "license": "MIT",
+      "copyright": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates."
+      ],
+      "sourceManifest": "node_modules/lexical/package.json",
+      "sourceLicense": "node_modules/lexical/LICENSE",
+      "licenseFile": "licenses/lexical/LICENSE",
+      "licenseSha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "bundledInputs": [
+        "node_modules/lexical/dist/Lexical.js",
+        "node_modules/lexical/dist/Lexical.prod.js"
+      ],
+      "browserFaces": [
+        "ui-conversation"
+      ]
+    }
+  ],
+  "rawBrowserAssets": [
+    {
+      "input": "vendor/harness/packages/client/ui-chat/src/client/chat/running-whale@2x.png",
+      "embeddedByStylesheet": "vendor/harness/packages/client/ui-chat/src/client/chat/ChatView.module.css",
+      "licenseFile": "LICENSE",
+      "thirdParty": false
+    }
+  ],
+  "missingLicenseTexts": []
+}

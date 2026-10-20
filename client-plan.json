@@ -1,0 +1,367 @@
+{
+  "entries": [
+    {
+      "key": "session-controller",
+      "id": "@deepseek-ai/dsh-api-session-controller",
+      "source": "vendor/harness/packages/api/session-controller/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/api/session-controller/src/index.ts",
+      "outdir": "dist/compat/session-controller",
+      "disableEntryId": "session-controller",
+      "entryId": "loom-compat-session-controller",
+      "client": {
+        "external": [
+          "@deepseek-ai/dsh-api-gateway/client"
+        ],
+        "inject": [
+          "@deepseek-ai/dsh-api-gateway",
+          "@deepseek-ai/dsh-client-file-upload"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "api-remotes",
+      "id": "@deepseek-ai/dsh-api-remotes",
+      "source": "src/client-compat/api-remotes.ts",
+      "hostSource": "src/client-compat/api-remotes-host.ts",
+      "outdir": "dist/compat/api-remotes",
+      "disableEntryId": "api-remotes",
+      "entryId": "loom-compat-api-remotes",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-gateway"
+        ],
+        "platform": "web",
+        "immediately": true
+      }
+    },
+    {
+      "key": "ui-conversation",
+      "id": "@deepseek-ai/dsh-client-ui-conversation",
+      "source": "vendor/harness/packages/client/ui-conversation/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-conversation/src/index.ts",
+      "outdir": "dist/compat/ui-conversation",
+      "disableEntryId": "ui-conversation",
+      "entryId": "loom-compat-ui-conversation",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-session-controller",
+          "@deepseek-ai/dsh-client-file-upload",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-ui-layout",
+          "@deepseek-ai/dsh-client-ui-renderer",
+          "@deepseek-ai/dsh-client-ui-session",
+          "@deepseek-ai/dsh-client-ui-settings",
+          "@deepseek-ai/dsh-client-ui-workspace"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-chat",
+      "id": "@deepseek-ai/dsh-client-ui-chat",
+      "source": "vendor/harness/packages/client/ui-chat/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-chat/src/index.ts",
+      "outdir": "dist/compat/ui-chat",
+      "disableEntryId": "ui-chat",
+      "entryId": "loom-compat-ui-chat",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-session-controller",
+          "@deepseek-ai/dsh-api-workspace-controller",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-ui-conversation",
+          "@deepseek-ai/dsh-client-ui-input-trigger",
+          "@deepseek-ai/dsh-client-ui-layout",
+          "@deepseek-ai/dsh-client-ui-renderer",
+          "@deepseek-ai/dsh-client-ui-session",
+          "@deepseek-ai/dsh-client-ui-settings",
+          "@deepseek-ai/dsh-client-ui-sidebar-right",
+          "@deepseek-ai/dsh-client-ui-workspace"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-tool",
+      "id": "@deepseek-ai/dsh-client-ui-tool",
+      "source": "vendor/harness/packages/client/ui-tool/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-tool/src/index.ts",
+      "outdir": "dist/compat/ui-tool",
+      "disableEntryId": "ui-tool",
+      "entryId": "loom-compat-ui-tool",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-workspace-controller",
+          "@deepseek-ai/dsh-client-connection",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-ui-conversation"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-workspace",
+      "id": "@deepseek-ai/dsh-client-ui-workspace",
+      "source": "vendor/harness/packages/client/ui-workspace/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-workspace/src/index.ts",
+      "outdir": "dist/compat/ui-workspace",
+      "disableEntryId": "ui-workspace",
+      "entryId": "loom-compat-ui-workspace",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-remote-access",
+          "@deepseek-ai/dsh-api-remotes",
+          "@deepseek-ai/dsh-api-session-controller",
+          "@deepseek-ai/dsh-api-workspace-controller",
+          "@deepseek-ai/dsh-client-connection",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-shortcuts",
+          "@deepseek-ai/dsh-client-ui-conversation",
+          "@deepseek-ai/dsh-client-ui-layout",
+          "@deepseek-ai/dsh-client-ui-renderer",
+          "@deepseek-ai/dsh-client-ui-session",
+          "@deepseek-ai/dsh-client-ui-sidebar"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-shortcuts",
+      "id": "@deepseek-ai/dsh-client-ui-shortcuts",
+      "source": "vendor/harness/packages/client/ui-shortcuts/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-shortcuts/src/index.ts",
+      "outdir": "dist/compat/ui-shortcuts",
+      "disableEntryId": "ui-shortcuts",
+      "entryId": "loom-compat-ui-shortcuts",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-client-shortcuts",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-ui-layout",
+          "@deepseek-ai/dsh-client-ui-settings"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-subagent",
+      "id": "@deepseek-ai/dsh-client-ui-subagent",
+      "source": "vendor/harness/packages/client/ui-subagent/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-subagent/src/index.ts",
+      "outdir": "dist/compat/ui-subagent",
+      "disableEntryId": "ui-subagent",
+      "entryId": "loom-compat-ui-subagent",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-session-controller",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-resources",
+          "@deepseek-ai/dsh-client-ui-chat",
+          "@deepseek-ai/dsh-client-ui-conversation",
+          "@deepseek-ai/dsh-client-ui-primitives",
+          "@deepseek-ai/dsh-client-ui-sidebar-right",
+          "@deepseek-ai/dsh-client-ui-input-trigger",
+          "@deepseek-ai/dsh-client-ui-workspace"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "ui-settings-models",
+      "id": "@deepseek-ai/dsh-client-ui-settings-models",
+      "source": "vendor/harness/packages/client/ui-settings-models/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/client/ui-settings-models/src/index.ts",
+      "outdir": "dist/compat/ui-settings-models",
+      "disableEntryId": "ui-settings-models",
+      "entryId": "loom-compat-ui-settings-models",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-client-ui-settings",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-api-remotes"
+        ],
+        "platform": "web"
+      }
+    },
+    {
+      "key": "client-ui-loom",
+      "id": "@deepseek-ai/dsh-experimental-client-ui-loom",
+      "source": "vendor/harness/packages/experimental/client-ui-loom/src/client/index.ts",
+      "hostSource": "vendor/harness/packages/experimental/client-ui-loom/src/index.ts",
+      "outdir": "dist/compat/client-ui-loom",
+      "disableEntryId": null,
+      "entryId": "loom-compat-client-ui-loom",
+      "client": {
+        "inject": [
+          "@deepseek-ai/dsh-api-remotes",
+          "@deepseek-ai/dsh-api-session-controller",
+          "@deepseek-ai/dsh-client-locale",
+          "@deepseek-ai/dsh-client-shortcuts",
+          "@deepseek-ai/dsh-client-ui-chat",
+          "@deepseek-ai/dsh-client-ui-conversation",
+          "@deepseek-ai/dsh-client-ui-primitives",
+          "@deepseek-ai/dsh-client-ui-session",
+          "@deepseek-ai/dsh-client-ui-workspace"
+        ],
+        "platform": "web"
+      }
+    }
+  ],
+  "aliases": {
+    "@loom/client-compat/BottomSheet": "src/client-compat/BottomSheet.tsx",
+    "@deepseek-ai/dsh-api-session-controller/remote": "generated/session-controller/typert.remote-client.js",
+    "@deepseek-ai/dsh-llm/remote": "generated/llm/typert.remote-client.js",
+    "@deepseek-ai/dsh-experimental-loom/remote": "generated/loom/typert.remote-client.js"
+  },
+  "requiredDevDependencies": {
+    "lightningcss": "1.33.0",
+    "@types/mime-types": "^3.0.1",
+    "zod": "4.4.3",
+    "react": "^18.2.0",
+    "@lexical/headless": "^0.49.0",
+    "react-dom": "^18.2.0",
+    "lexical": "^0.49.0",
+    "clsx": "^2.0.0",
+    "@lexical/utils": "^0.49.0",
+    "@lexical/text": "^0.49.0",
+    "@lexical/plain-text": "^0.49.0",
+    "@lexical/history": "^0.49.0",
+    "@tanstack/react-virtual": "3.14.10",
+    "@deepseek-ai/dsh-brand": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-deque": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-output-retention": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-util-crypto": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-util-values": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-util-workspace-path": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-native-command": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-host-open-in-app": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-plugin-manager": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-agent-preset-registry": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-workspace-controller": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-spill-policy": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-product-analytics": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-user-questions": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-commands": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-account-controller": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-settings-controller": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-office-to-pdf": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-goal": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-schedule": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-cordis-host-runner": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-ui-plugin-manager": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-plugin-market": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-host-plugin-inventory": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-message-feedback": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-permission-presets": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-command-feedback": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-file-upload": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-session-reference": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-subagent": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-job-controller": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-terminal-controller": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-api-workspace-files": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-file-reference": "0.2.1-rc.2"
+  },
+  "notes": [
+    "Private manifests retain canonical browser module IDs. Host rows use patch-relative files; package subpaths do not participate in browser discovery.",
+    "Only BottomSheet is private; modal lifetime hooks and platform identities remain installed Harness exports.",
+    "Source extraction adds the unchanged API Remotes browser assembly so its Session and LLM generated contributions match the compatibility services.",
+    "The locale runtime remains stock; the shared numeric grouping label is supplied by Chat and Loom dictionaries.",
+    "Shortcuts runtime remains stock; its fork changes are type-only.",
+    "A copied Models settings provider writes the standalone Pi adapter namespace loom-compat-llm-pi-ai; existing provider model cards still use their actual returned settingsNs."
+  ],
+  "configurationRows": [
+    {
+      "id": "session-controller",
+      "name": "@deepseek-ai/dsh-api-session-controller",
+      "disabled": true
+    },
+    {
+      "id": "api-remotes",
+      "name": "@deepseek-ai/dsh-api-remotes",
+      "disabled": true
+    },
+    {
+      "id": "ui-conversation",
+      "name": "@deepseek-ai/dsh-client-ui-conversation",
+      "disabled": true
+    },
+    {
+      "id": "ui-chat",
+      "name": "@deepseek-ai/dsh-client-ui-chat",
+      "disabled": true
+    },
+    {
+      "id": "ui-tool",
+      "name": "@deepseek-ai/dsh-client-ui-tool",
+      "disabled": true
+    },
+    {
+      "id": "ui-workspace",
+      "name": "@deepseek-ai/dsh-client-ui-workspace",
+      "disabled": true
+    },
+    {
+      "id": "ui-shortcuts",
+      "name": "@deepseek-ai/dsh-client-ui-shortcuts",
+      "disabled": true
+    },
+    {
+      "id": "ui-subagent",
+      "name": "@deepseek-ai/dsh-client-ui-subagent",
+      "disabled": true
+    },
+    {
+      "id": "ui-settings-models",
+      "name": "@deepseek-ai/dsh-client-ui-settings-models",
+      "disabled": true
+    },
+    {
+      "insert": [
+        {
+          "id": "loom-compat-session-controller",
+          "name": "./dist/compat/session-controller/index.js"
+        },
+        {
+          "id": "loom-compat-api-remotes",
+          "name": "./dist/compat/api-remotes/index.js"
+        },
+        {
+          "id": "loom-compat-ui-conversation",
+          "name": "./dist/compat/ui-conversation/index.js"
+        },
+        {
+          "id": "loom-compat-ui-chat",
+          "name": "./dist/compat/ui-chat/index.js"
+        },
+        {
+          "id": "loom-compat-ui-tool",
+          "name": "./dist/compat/ui-tool/index.js"
+        },
+        {
+          "id": "loom-compat-ui-workspace",
+          "name": "./dist/compat/ui-workspace/index.js"
+        },
+        {
+          "id": "loom-compat-ui-shortcuts",
+          "name": "./dist/compat/ui-shortcuts/index.js"
+        },
+        {
+          "id": "loom-compat-ui-subagent",
+          "name": "./dist/compat/ui-subagent/index.js"
+        },
+        {
+          "id": "loom-compat-ui-settings-models",
+          "name": "./dist/compat/ui-settings-models/index.js"
+        },
+        {
+          "id": "loom-compat-client-ui-loom",
+          "name": "./dist/compat/client-ui-loom/index.js"
+        }
+      ]
+    }
+  ]
+}
