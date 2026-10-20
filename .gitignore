@@ -5,3 +5,5 @@ dist/
 .env
 .verification*.log
 .verification/
+.npmrc
+.DS_Store

@@ -2,9 +2,11 @@
 
 ## Supported installation
 
-`@scasella/dsh-loom@0.1.0-alpha.3` targets the official Node/Web runtime `@deepseek-ai/dsh@0.2.1-rc.2`, whose upstream source is `687f282e8625c6b8d11ff58211a90524be2e4317`. The installation must resolve `@earendil-works/pi-ai@1.3.0`; readiness refuses a missing or different SDK. Harness declares a broader SDK dependency range, so the same Harness version can resolve another SDK version in a future installation. Other releases, modified runtimes, Desktop distributions, and non-Web profiles have no compatibility claim. The package declares the exact DSH engine requirement; an exemption does not supply missing APIs and is unsupported.
+`@scasella/dsh-loom@0.1.0-alpha.4` targets the official Node/Web runtime `@deepseek-ai/dsh@0.2.1-rc.2`, whose upstream source is `687f282e8625c6b8d11ff58211a90524be2e4317`. The installation must resolve `@earendil-works/pi-ai@1.3.0`; readiness refuses a missing or different SDK. Harness declares a broader SDK dependency range, so the same Harness version can resolve another SDK version in a future installation. Other releases, modified runtimes, Desktop distributions, and non-Web profiles have no compatibility claim. The package declares the exact DSH engine requirement; an exemption does not supply missing APIs and is unsupported.
 
 The reference implementation is preserved at `scasella/deepseek-harness`, commit `77ccab27d200241ddf49d0ec9f5de1524343374f`. This extraction carries the full Loom service, tools, browser views, and private compatibility providers. It uses the installed Harness launcher and shared runtime identities. It does not overwrite files in the official installation.
+
+Version `0.1.0-alpha.4` is the npm alpha. Its Loom features and supported runtime/SDK versions match the archived [GitHub v0.1.0-alpha.3 tarball](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/scasella-dsh-loom-0.1.0-alpha.3.tgz). Both distributions include the English and Chinese guides, configuration reference, and documentation index.
 
 ## Validation status
 

@@ -19,7 +19,7 @@ Provide a complete, independent official npm installation and the packed archive
 ```sh
 DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm run verify:stock -- \
   --runtime /absolute/path/official/node_modules/@deepseek-ai/dsh \
-  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.3.tgz \
+  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.4.tgz \
   --web-smoke
 ```
 

@@ -90,7 +90,7 @@
 <a id="further-exploration"></a>
 ## 进一步探索
 
-- [安装与首次使用](../README.zh.md#install) — 固定版本的下载、模型设置和 Web 启动。
+- [安装与首次使用](../README.zh.md#install) — 固定版本的安装、模型设置和 Web 启动。
 - [兼容性与配置迁移](../COMPATIBILITY.md) — 支持的运行时和现有配置的迁移要求。
 - [配置参考](configuration.zh.md) — 隔离、价格、测试摘要和自主探索预算。
 - [验证范围](../VERIFICATION.md) — 已执行的检查和仍需验证的行为。

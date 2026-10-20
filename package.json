@@ -1,6 +1,6 @@
 {
   "name": "@scasella/dsh-loom",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "Standalone Loom bundle for DeepSeek Harness: branching conversations, worktree comparison, and Weave",
   "type": "module",
   "license": "MIT",
@@ -138,5 +138,22 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.9.3"
   },
-  "icon": "./icon.svg"
+  "icon": "./icon.svg",
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "loom",
+    "llm",
+    "ai-agents",
+    "conversation-tree",
+    "git-worktree",
+    "creative-writing",
+    "cordis",
+    "weave"
+  ]
 }

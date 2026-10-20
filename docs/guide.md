@@ -90,7 +90,7 @@ Loom is experimental. Its plugin records, APIs, and UI have no stability promise
 <a id="further-exploration"></a>
 ## Further Exploration
 
-- [Installation and first run](../README.md#install) — pinned download, model setup, and Web launch.
+- [Installation and first run](../README.md#install) — pinned installation, model setup, and Web launch.
 - [Compatibility and configuration migration](../COMPATIBILITY.md) — supported runtime and existing-home requirements.
 - [Configuration reference](configuration.md) — isolation, pricing, test summaries, and autonomous budgets.
 - [Verification scope](../VERIFICATION.md) — checks performed and remaining validation limits.
