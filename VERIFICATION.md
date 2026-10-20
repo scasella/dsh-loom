@@ -19,13 +19,13 @@ Provide a complete, independent official npm installation and the packed archive
 ```sh
 DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm run verify:stock -- \
   --runtime /absolute/path/official/node_modules/@deepseek-ai/dsh \
-  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.2.tgz \
+  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.3.tgz \
   --web-smoke
 ```
 
 The verifier creates a private temporary home, installs through the original `dsh plugin` CLI, runs eight integration tests against the installed tarball, checks Web startup on an allocated port, removes the bundle through the same CLI, checks bundle rollback, and compares the original installation's files. It clears model keys, starts no paid calls, prints the archive checksum, and removes its temporary files and owned processes. It refuses a linked source checkout as the official runtime. It does not create a version exemption.
 
-For all 47 tests, set `LOOM_STOCK_NODE_MODULES` to the official installation's `node_modules` and `LOOM_INSTALLED_PACKAGE` to the bundle installed in an isolated Web profile, then run `DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm test`. The installed package is necessary: importing a development build beside development dependencies can create duplicate Session classes and is not a valid runtime proof.
+For all 48 tests, set `LOOM_STOCK_NODE_MODULES` to the official installation's `node_modules` and `LOOM_INSTALLED_PACKAGE` to the bundle installed in an isolated Web profile, then run `DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm test`. The installed package is necessary: importing a development build beside development dependencies can create duplicate Session classes and is not a valid runtime proof.
 
 ## Results
 
@@ -33,7 +33,7 @@ For all 47 tests, set `LOOM_STOCK_NODE_MODULES` to the official installation's `
 | --- | --- |
 | Independent Host/browser build | Pass: 22 Host entries in one shared ESM graph; ten browser factories |
 | Strict Host and Client TypeScript | Pass; 1,672 Host and 980 Client compiler inputs; none outside the standalone project |
-| Standalone tests | 47 passed, zero failed/skipped |
+| Standalone tests | 48 passed, zero failed/skipped |
 | Fresh official-CLI install and activation | Pass, without source aliases, symlinks, patched installed files, or version exemptions |
 | Installed-tarball integration | Eight passed using stock services, actual JSONL persistence, SQLite, Git and subprocess output |
 | Web readiness/authentication | Pass on an allocated port |

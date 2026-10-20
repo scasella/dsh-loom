@@ -149,7 +149,7 @@ async function buildEntry(entry) {
   await writeFile(join(directory, 'client.js'), code)
   const client = { ...entry.client, external: [...requests].filter(specifier => !platform.has(specifier)).sort() }
   const manifest = {
-    name: entry.id, version: '0.1.0-alpha.2', private: true, type: 'module',
+    name: entry.id, version: '0.1.0-alpha.3', private: true, type: 'module',
     description: `Private Loom compatibility face for ${entry.id}`,
     main: './index.js', exports: { '.': './index.js', './client': './client.js', './package.json': './package.json' },
     dsh: { client },

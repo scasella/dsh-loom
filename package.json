@@ -1,6 +1,6 @@
 {
   "name": "@scasella/dsh-loom",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "Standalone Loom bundle for DeepSeek Harness: branching conversations, worktree comparison, and Weave",
   "type": "module",
   "license": "MIT",

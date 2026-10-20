@@ -5,7 +5,10 @@ import { tmpdir } from 'node:os'
 import { dirname, isAbsolute, join, posix, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const required = ['package.json', 'README.md', 'README.zh.md', 'COMPATIBILITY.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'cordis.patch.yml', 'dist/index.js']
+const required = [
+  'package.json', 'README.md', 'README.zh.md', 'COMPATIBILITY.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'cordis.patch.yml', 'dist/index.js',
+  'docs/README.md', 'docs/README.zh.md', 'docs/guide.md', 'docs/guide.zh.md', 'docs/configuration.md', 'docs/configuration.zh.md',
+]
 const privatePath = /(?:^|\/)(?:\.env(?:\.[^/]*)?|\.npmrc|\.netrc|\.ssh|\.artifacts|auth(?:\.[^/]*)?|credentials(?:\.[^/]*)?|fixtures?|vendor|src|source)(?:\/|$)/iu
 const machinePath = /(?:\/(?:Users|home)\/[^\s"'<>\\]+|\/private\/(?:tmp|var\/folders)\/[^\s"'<>\\]+|[A-Za-z]:[\\/](?:Users|Documents and Settings)[\\/])/u
 const sourceImport = /(?:^|[\/])(?:vendor|src|source)(?:[\/]|$)|^@loom\//u

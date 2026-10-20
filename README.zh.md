@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2)
+[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3)
 
 一次生成多个续写，以树状结构探索，并保留每条路径。Loom 为官方 DeepSeek Harness Web 应用提供对话分支、Git worktree 代码比较和 Weave 散文编辑器。
 
@@ -12,7 +12,7 @@
 
 https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 
-这段 3 分 54 秒的字幕演示展示相同的 Loom 功能，在[参考实现](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f)上记录真实模型调用，使用捕获的界面状态并调整了展示时长。[完整画质 MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.mp4) · [字幕](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.srt)。
+这段 3 分 54 秒的字幕演示展示相同的 Loom 功能，在[参考实现](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f)上记录真实模型调用，使用捕获的界面状态并调整了展示时长。[完整画质 MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/Loom.mp4) · [字幕](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/Loom.srt)。
 
 ## 功能
 
@@ -22,7 +22,7 @@ https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 - **使用 Weave 写作：**在光标位置生成续写，保留同级候选，检查受支持的词元概率，探索备选词元，并连同筛选记录导出文本。
 - **导航与委托：**浏览 Multiverse 分支家族，搜索自身或继承消息，使用键盘和移动端控件，并让模型在明确预算内探索。
 
-[Loom 用户指南](docs/guide.zh.md)介绍各项使用流程。[文档索引](docs/README.zh.md)汇集配置、兼容性和验证说明。
+[Loom 用户指南](docs/guide.zh.md)介绍各项使用流程。[文档索引](docs/README.zh.md)汇集配置、兼容性和验证说明。发行 tarball 包含中英文用户指南、配置参考和文档索引。运行时功能以及支持的 Harness/SDK 版本保持不变。
 
 <a id="install"></a>
 ## 安装
@@ -33,13 +33,13 @@ https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 npm install --global @deepseek-ai/dsh@0.2.1-rc.2
 ```
 
-从 [Loom v0.1.0-alpha.2](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2) 下载 tarball。在 POSIX shell 中将这个固定版本安装到独立 home：
+从 [Loom v0.1.0-alpha.3](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3) 下载 tarball。在 POSIX shell 中将这个固定版本安装到独立 home：
 
 ```sh
-curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.2.tgz \
-  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/scasella-dsh-loom-0.1.0-alpha.2.tgz
+curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.3.tgz \
+  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/scasella-dsh-loom-0.1.0-alpha.3.tgz
 export DSH_HOME="$HOME/.dsh-loom"
-dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.2.tgz"
+dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.3.tgz"
 dsh web --no-open --port 3097
 ```
 

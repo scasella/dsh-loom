@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2)
+[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3)
 
 Generate several continuations, explore them as a tree, and keep every path. Loom adds conversation branching, code comparisons in Git worktrees, and the Weave prose editor to the official DeepSeek Harness Web application.
 
@@ -12,7 +12,7 @@ This community bundle targets **`@deepseek-ai/dsh@0.2.1-rc.2`**. It installs thr
 
 https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 
-The 3:54 captioned demo shows the same Loom features with real model calls on the [reference implementation](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f), with captured UI states and edited timing. [Full-quality MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.mp4) · [Captions](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.srt).
+The 3:54 captioned demo shows the same Loom features with real model calls on the [reference implementation](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f), with captured UI states and edited timing. [Full-quality MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/Loom.mp4) · [Captions](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/Loom.srt).
 
 ## Features
 
@@ -22,7 +22,7 @@ The 3:54 captioned demo shows the same Loom features with real model calls on th
 - **Write with Weave:** generate continuations at a cursor, retain siblings, inspect supported token probabilities, explore token alternatives, and export prose with curation records.
 - **Navigate and delegate:** browse Multiverse families, search own or inherited messages, use keyboard and mobile controls, and let models explore under explicit budgets.
 
-The [Loom user guide](docs/guide.md) covers every workflow. See the [documentation index](docs/README.md) for configuration, compatibility, and verification.
+The [Loom user guide](docs/guide.md) covers every workflow. See the [documentation index](docs/README.md) for configuration, compatibility, and verification. The release tarball includes the English and Chinese user guides, configuration reference, and documentation index. Runtime features and supported Harness/SDK versions are unchanged.
 
 <a id="install"></a>
 ## Install
@@ -33,13 +33,13 @@ You need Node.js 24+ or Node.js 22.19+ within 22.x, Git 2.26+, pnpm on your PATH
 npm install --global @deepseek-ai/dsh@0.2.1-rc.2
 ```
 
-Download the tarball from [Loom v0.1.0-alpha.2](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2). In a POSIX shell, install this pinned release in a separate home:
+Download the tarball from [Loom v0.1.0-alpha.3](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3). In a POSIX shell, install this pinned release in a separate home:
 
 ```sh
-curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.2.tgz \
-  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/scasella-dsh-loom-0.1.0-alpha.2.tgz
+curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.3.tgz \
+  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/scasella-dsh-loom-0.1.0-alpha.3.tgz
 export DSH_HOME="$HOME/.dsh-loom"
-dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.2.tgz"
+dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.3.tgz"
 dsh web --no-open --port 3097
 ```
 

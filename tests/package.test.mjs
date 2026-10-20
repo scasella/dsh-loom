@@ -3,11 +3,13 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { inspectPackage } from '../scripts/check-package.mjs'
 
+const migratedDocs = ['docs/README.md', 'docs/README.zh.md', 'docs/guide.md', 'docs/guide.zh.md', 'docs/configuration.md', 'docs/configuration.zh.md']
+
 function archive() {
   const manifest = { name: '@scasella/dsh-loom', engines: { dsh: '0.2.1-rc.2' }, dsh: { bundle: { patch: './cordis.patch.yml' } } }
   return [
     { path: 'package.json', content: JSON.stringify(manifest) },
-    ...['README.md', 'README.zh.md', 'COMPATIBILITY.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'cordis.patch.yml'].map(path => ({ path, content: 'Public documentation' })),
+    ...['README.md', 'README.zh.md', 'COMPATIBILITY.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'cordis.patch.yml', ...migratedDocs].map(path => ({ path, content: 'Public documentation' })),
     { path: 'dist/index.js', content: 'export const name = "loom";' },
     { path: 'dist/compat/ui-chat/client.js', content: 'window.__ModuleLoader__.load({ id: "chat", factory: () => ({}) });' },
   ]
@@ -17,6 +19,13 @@ test('accepts a compiled bundle with public documentation and platform imports',
   const files = archive()
   files.find(file => file.path === 'dist/index.js').content = 'import { Service } from "@deepseek-ai/cordis"; export { Service };'
   assert.deepEqual(inspectPackage(files), [])
+})
+
+test('refuses an archive when any migrated guide or documentation index is omitted', () => {
+  for (const path of migratedDocs) {
+    const files = archive().filter(file => file.path !== path)
+    assert.deepEqual(inspectPackage(files), [`Missing required distribution file: ${path}`], path)
+  }
 })
 
 test('refuses a source-only package even when npm selects its README', () => {
