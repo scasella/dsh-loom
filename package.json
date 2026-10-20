@@ -20,6 +20,7 @@
     "dist",
     "cordis.patch.yml",
     "icon.svg",
+    "docs",
     "README.md",
     "README.zh.md",
     "LICENSE",

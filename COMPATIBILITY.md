@@ -18,6 +18,8 @@ A separate real-browser run on the original launcher verified worktree branches 
 
 ## Configuration migration
 
+For branch isolation, prices, test summaries, and autonomous budgets, use the [configuration reference](docs/configuration.md). The [user guide](docs/guide.md) covers the corresponding Web workflows.
+
 Start with a separate `DSH_HOME`, as shown in [README.md](README.md#install). Existing model/profile overrides are not automatically moved to replacement entries. Reusing an existing home requires a stopped profile and a backup of its configuration and saved data. Keep credentials out of Git and shared configuration examples.
 
 The bundle disables selected stock rows and inserts unique compatibility rows in the same profile. Settings namespaces, when a provider has settings, follow those replacement entry IDs. The Models page targets the replacement Pi adapter. Use the following IDs for explicit profile overlays and saved settings:

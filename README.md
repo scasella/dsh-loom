@@ -22,8 +22,9 @@ The 3:54 captioned demo shows the same Loom features with real model calls on th
 - **Write with Weave:** generate continuations at a cursor, retain siblings, inspect supported token probabilities, explore token alternatives, and export prose with curation records.
 - **Navigate and delegate:** browse Multiverse families, search own or inherited messages, use keyboard and mobile controls, and let models explore under explicit budgets.
 
-The [Loom user guide](https://github.com/scasella/deepseek-harness/blob/77ccab27d200241ddf49d0ec9f5de1524343374f/docs/user/guide/loom.md) describes these workflows. Use the installation instructions below for this standalone bundle.
+The [Loom user guide](docs/guide.md) covers every workflow. See the [documentation index](docs/README.md) for configuration, compatibility, and verification.
 
+<a id="install"></a>
 ## Install
 
 You need Node.js 24+ or Node.js 22.19+ within 22.x, Git 2.26+, pnpm on your PATH, and the official **`@deepseek-ai/dsh@0.2.1-rc.2`** runtime with its installed `@earendil-works/pi-ai@1.3.0` SDK. The bundle refuses an unsupported SDK version. Install that exact runtime if needed:
@@ -72,4 +73,4 @@ Use the same home and profile, then restart. Removal withdraws the bundle's prov
 
 The source project builds with `npm ci` and `npm run build`. `npm run pack:check` checks the actual npm pack list and scans packaged text for private files, machine paths, and unresolved source imports. Development sources are excluded from the installation tarball. See [COMPATIBILITY.md](COMPATIBILITY.md) for supported versions, settings IDs, and validation scope.
 
-[MIT](LICENSE). Loom derives from the independently maintained reference fork at commit `77ccab27d200241ddf49d0ec9f5de1524343374f` and from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), developed by DeepSeek AI. Third-party notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This package is community maintained and is not an official DeepSeek release.
+[MIT](LICENSE). Loom derives from the archived reference fork at commit `77ccab27d200241ddf49d0ec9f5de1524343374f` and from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), developed by DeepSeek AI. Third-party notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This package is community maintained and is not an official DeepSeek release.

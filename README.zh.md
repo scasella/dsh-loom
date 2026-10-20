@@ -22,8 +22,9 @@ https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 - **使用 Weave 写作：**在光标位置生成续写，保留同级候选，检查受支持的词元概率，探索备选词元，并连同筛选记录导出文本。
 - **导航与委托：**浏览 Multiverse 分支家族，搜索自身或继承消息，使用键盘和移动端控件，并让模型在明确预算内探索。
 
-[Loom 用户指南](https://github.com/scasella/deepseek-harness/blob/77ccab27d200241ddf49d0ec9f5de1524343374f/docs/user/guide/loom.md)介绍了这些流程。安装本独立 bundle 时请使用下方说明。
+[Loom 用户指南](docs/guide.zh.md)介绍各项使用流程。[文档索引](docs/README.zh.md)汇集配置、兼容性和验证说明。
 
+<a id="install"></a>
 ## 安装
 
 需要 Node.js 24+ 或 22.x 系列中的 22.19+、Git 2.26+、PATH 中可用的 pnpm，以及官方 **`@deepseek-ai/dsh@0.2.1-rc.2`** 运行时和其中安装的 `@earendil-works/pi-ai@1.3.0` SDK。bundle 会拒绝不受支持的 SDK 版本。如有需要，请安装这一准确版本的运行时：
@@ -72,4 +73,4 @@ dsh plugin --profile web remove @scasella/dsh-loom
 
 源码项目可通过 `npm ci` 和 `npm run build` 构建。`npm run pack:check` 检查实际 npm 打包清单，并扫描包内文本中的私密文件、机器路径和未解析的源码导入。安装 tarball 不包含开发源码。支持的版本、设置 ID 和验证范围见 [COMPATIBILITY.md](COMPATIBILITY.md)。
 
-[MIT](LICENSE)。Loom 源自独立维护的参考分支提交 `77ccab27d200241ddf49d0ec9f5de1524343374f`，以及由 DeepSeek AI 开发的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。第三方声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。本包由社区维护，不是 DeepSeek 官方发行版。
+[MIT](LICENSE)。Loom 源自已归档的参考分支提交 `77ccab27d200241ddf49d0ec9f5de1524343374f`，以及由 DeepSeek AI 开发的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。第三方声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。本包由社区维护，不是 DeepSeek 官方发行版。
