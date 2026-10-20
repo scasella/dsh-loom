@@ -8,19 +8,19 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'nod
 import { fileURLToPath } from 'node:url'
 
 const project = dirname(dirname(fileURLToPath(import.meta.url)))
-const help = 'Usage: node scripts/verify-stock.mjs --runtime <official dsh package directory> --tarball <Loom.tgz> [--web-smoke] [--timeout-ms <1..600000>]'
+const help = 'Usage: node scripts/verify-stock.mjs --runtime <official dsh package directory> --tarball <Loom.tgz> [--web-smoke] [--all-tests] [--timeout-ms <1..600000>]'
 
 /** Parse explicit verification inputs before acquiring resources.
  * @param args Command-line arguments without the Node executable and script.
- * @returns Validated paths, child deadline, and optional Web startup check.
+ * @returns Validated paths, child deadline, Web startup check, and full-suite selection.
  */
 export function parseOptions(args) {
   const values = new Map()
   for (let index = 0; index < args.length; index += 1) {
     const name = args[index]
-    if (!['--runtime', '--tarball', '--timeout-ms', '--web-smoke', '--help'].includes(name)) throw new Error(`Unknown argument ${JSON.stringify(name)}. ${help}`)
+    if (!['--runtime', '--tarball', '--timeout-ms', '--web-smoke', '--all-tests', '--help'].includes(name)) throw new Error(`Unknown argument ${JSON.stringify(name)}. ${help}`)
     if (values.has(name)) throw new Error(`Duplicate argument ${name}`)
-    if (name === '--web-smoke' || name === '--help') values.set(name, true)
+    if (name === '--web-smoke' || name === '--all-tests' || name === '--help') values.set(name, true)
     else {
       const value = args[++index]
       if (value === undefined || value.startsWith('--') || value.includes('\0')) throw new Error(`Missing or invalid value for ${name}`)
@@ -38,7 +38,20 @@ export function parseOptions(args) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 600000) throw new Error('--timeout-ms must be an integer from 1 to 600000')
   for (const name of ['--runtime', '--tarball']) if (/^[a-z][a-z\d+.-]*:\/\//iu.test(values.get(name))) throw new Error(`${name} must be a local filesystem path`)
   if (!values.get('--tarball').endsWith('.tgz')) throw new Error('--tarball must name a .tgz file')
-  return { runtime: resolve(values.get('--runtime')), tarball: resolve(values.get('--tarball')), timeoutMs, webSmoke: values.has('--web-smoke') }
+  return { runtime: resolve(values.get('--runtime')), tarball: resolve(values.get('--tarball')), timeoutMs, webSmoke: values.has('--web-smoke'), allTests: values.has('--all-tests') }
+}
+
+/** Resolve installed-candidate tests before acquiring verification resources.
+ * @param directory Source test directory whose regular test files may be executed.
+ * @param allTests When true, select every .test.mjs file; otherwise select features.test.mjs only.
+ * @returns Absolute test paths in stable filename order; refuses an empty selection or missing feature test.
+ */
+export async function resolveTestFiles(directory, allTests) {
+  const entries = await readdir(directory, { withFileTypes: true })
+  const names = entries.filter(entry => entry.isFile() && entry.name.endsWith('.test.mjs')).map(entry => entry.name)
+  const selected = allTests ? names.sort() : names.filter(name => name === 'features.test.mjs')
+  if (selected.length === 0 || !selected.includes('features.test.mjs')) throw new Error('Verification requires tests/features.test.mjs')
+  return selected.map(name => resolve(directory, name))
 }
 
 /** Remove URL credentials, authentication query values, and common credential tokens from diagnostic output.
@@ -90,8 +103,8 @@ async function validateInputs(options) {
   if (!(await lstat(tarball)).isFile()) throw new Error('--tarball must be a regular .tgz file')
   const tarballBytes = await readFile(tarball)
   const tarballDigest = createHash('sha256').update(tarballBytes).digest('hex')
-  await readFile(join(project, 'tests/features.test.mjs'))
-  return { ...options, runtime, stockModules, tarballBytes, tarballDigest, cli, packageName: expected.name, packageVersion: expected.version }
+  const testFiles = await resolveTestFiles(join(project, 'tests'), options.allTests)
+  return { ...options, runtime, stockModules, tarballBytes, tarballDigest, cli, testFiles, packageName: expected.name, packageVersion: expected.version }
 }
 
 async function snapshotTree(root) {
@@ -239,7 +252,7 @@ async function smokeWeb(input, context, signal) {
 }
 
 /** Install, exercise, remove, and verify one tarball without modifying the official runtime.
- * @param options Parsed local verification inputs.
+ * @param options Parsed local verification inputs; allTests selects the full source suite, otherwise eight feature tests run.
  * @returns Completes after owned children exit, profile rollback passes, and temporary files are removed.
  */
 export async function verifyStock(options) {
@@ -272,10 +285,10 @@ export async function verifyStock(options) {
     assert.equal(installed.name, input.packageName)
     assert.equal(installed.version, input.packageVersion, 'The tarball version differs from this checkout')
     console.log('Loom installed and activated through the original dsh plugin command')
-    const featureOutput = await runChild(['--test', join(project, 'tests/features.test.mjs')], {
+    const testOutput = await runChild(['--test', ...input.testFiles], {
       ...context, env: { ...env, LOOM_INSTALLED_PACKAGE: installedPackage, LOOM_STOCK_NODE_MODULES: input.stockModules },
     }, controller.signal)
-    console.log(redactOutput(featureOutput).trim())
+    console.log(redactOutput(testOutput).trim())
     if (input.webSmoke) await smokeWeb(input, context, controller.signal)
   } catch (error) {
     failures.push(error)

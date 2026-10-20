@@ -9,6 +9,7 @@ Install and use the standalone Loom bundle for the official DeepSeek Harness Web
 - [Configuration](configuration.md) — isolation, pricing, test summaries, generation limits, and autonomous budgets.
 - [Compatibility and migration](../COMPATIBILITY.md) — supported versions, settings IDs, existing-profile migration, and runtime limits.
 - [Verification](../VERIFICATION.md) — installation checks, feature evidence, and validation limits.
+- [Maintainer checks and releases](releasing.md) — current-checkout CI, trusted publishing, version preparation, and tagged npm releases.
 - [License and third-party notices](../THIRD_PARTY_NOTICES.md) — source attribution and included dependency licenses.
 
 Report bugs and request improvements in [dsh-loom issues](https://github.com/scasella/dsh-loom/issues).

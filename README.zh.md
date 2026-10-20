@@ -73,4 +73,6 @@ dsh plugin --profile web remove @scasella/dsh-loom
 
 源码项目可通过 `npm ci` 和 `npm run build` 构建。`npm run pack:check` 检查实际 npm 打包清单，并扫描包内文本中的私密文件、机器路径和未解析的源码导入。安装 tarball 不包含开发源码。支持的版本、设置 ID 和验证范围见 [COMPATIBILITY.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/COMPATIBILITY.md)。
 
+持续检查、可信发布和带标签 npm 发布的维护者说明见[发布指南](https://github.com/scasella/dsh-loom/blob/main/docs/releasing.zh.md)。
+
 [MIT](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/LICENSE)。Loom 源自已归档的参考分支提交 `77ccab27d200241ddf49d0ec9f5de1524343374f`，以及由 DeepSeek AI 开发的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。第三方声明见 [THIRD_PARTY_NOTICES.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/THIRD_PARTY_NOTICES.md)。本包由社区维护，不是 DeepSeek 官方发行版。

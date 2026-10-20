@@ -73,4 +73,6 @@ Use the same home and profile, then restart. Removal withdraws the bundle's prov
 
 The source project builds with `npm ci` and `npm run build`. `npm run pack:check` checks the actual npm pack list and scans packaged text for private files, machine paths, and unresolved source imports. Development sources are excluded from the installation tarball. See [COMPATIBILITY.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/COMPATIBILITY.md) for supported versions, settings IDs, and validation scope.
 
+Maintainer instructions for continuous checks, trusted publishing, and tagged npm releases are in the [release guide](https://github.com/scasella/dsh-loom/blob/main/docs/releasing.md).
+
 [MIT](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/LICENSE). Loom derives from the archived reference fork at commit `77ccab27d200241ddf49d0ec9f5de1524343374f` and from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), developed by DeepSeek AI. Third-party notices are in [THIRD_PARTY_NOTICES.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/THIRD_PARTY_NOTICES.md). This package is community maintained and is not an official DeepSeek release.

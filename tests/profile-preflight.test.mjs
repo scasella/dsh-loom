@@ -1,11 +1,12 @@
-/** Profile migration refusals protect existing settings without changing them. */
+/** Profile migration refusals and verification input checks leave existing settings unchanged. */
 import { build } from 'esbuild'
-import { mkdtemp, rm } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import assert from 'node:assert/strict'
 import { after, test } from 'node:test'
+import { parseOptions, resolveTestFiles } from '../scripts/verify-stock.mjs'
 
 const dir = await mkdtemp(join(tmpdir(), 'loom-profile-test-'))
 const output = join(dir, 'preflight.mjs')
@@ -41,4 +42,41 @@ test('refuses migrated overrides that still assert a stock module name', () => {
     { id: 'llm-pi-ai', config: {} },
     { id: 'loom-compat-llm-pi-ai', name: '@deepseek-ai/dsh-llm-pi-ai', config: {} },
   ]), /stock name assertions/)
+})
+
+test('stock verifier defaults to feature checks and explicitly selects the full suite', () => {
+  const args = ['--runtime', 'official/node_modules/@deepseek-ai/dsh', '--tarball', 'loom.tgz']
+  const defaults = parseOptions(args)
+  assert.deepEqual(defaults, { runtime: resolve(args[1]), tarball: resolve('loom.tgz'), timeoutMs: 180000, webSmoke: false, allTests: false })
+  assert.deepEqual(parseOptions([...args, '--all-tests', '--web-smoke', '--timeout-ms', '600000']), { ...defaults, allTests: true, webSmoke: true, timeoutMs: 600000 })
+  assert.deepEqual(parseOptions(['--help']), { help: true })
+})
+
+test('stock verifier refuses unknown, repeated, valued boolean and incomplete inputs', () => {
+  const args = ['--runtime', 'official/node_modules/@deepseek-ai/dsh', '--tarball', 'loom.tgz']
+  for (const suffix of [['--everything'], ['--all-tests', '--all-tests'], ['--all-tests', 'true'], ['--web-smoke', '--web-smoke'], ['--timeout-ms', '0'], ['--timeout-ms', '600001'], ['--timeout-ms', '1.5']]) {
+    assert.throws(() => parseOptions([...args, ...suffix]), /Unknown argument|Duplicate argument|must be an integer/)
+  }
+  assert.throws(() => parseOptions(['--all-tests']), /Required argument --runtime/)
+  assert.throws(() => parseOptions([...args, '--help']), /cannot be combined/)
+  assert.throws(() => parseOptions(['--runtime', '--all-tests']), /Missing or invalid value/)
+})
+
+test('stock verifier discovers every regular test in stable order and retains the feature-only default', async () => {
+  const directory = await mkdtemp(join(dir, 'selection-'))
+  await writeFile(join(directory, 'z-extra.test.mjs'), '')
+  await writeFile(join(directory, 'features.test.mjs'), '')
+  await writeFile(join(directory, 'a-first.test.mjs'), '')
+  await writeFile(join(directory, 'helper.mjs'), '')
+  await mkdir(join(directory, 'directory.test.mjs'))
+  assert.deepEqual(await resolveTestFiles(directory, false), [join(directory, 'features.test.mjs')])
+  assert.deepEqual(await resolveTestFiles(directory, true), ['a-first.test.mjs', 'features.test.mjs', 'z-extra.test.mjs'].map(name => join(directory, name)))
+})
+
+test('stock verifier refuses missing feature coverage before installing the candidate', async () => {
+  const directory = await mkdtemp(join(dir, 'missing-feature-'))
+  await assert.rejects(resolveTestFiles(directory, true), /requires tests\/features.test.mjs/)
+  await writeFile(join(directory, 'other.test.mjs'), '')
+  await assert.rejects(resolveTestFiles(directory, false), /requires tests\/features.test.mjs/)
+  await assert.rejects(resolveTestFiles(directory, true), /requires tests\/features.test.mjs/)
 })
