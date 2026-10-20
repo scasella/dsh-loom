@@ -4,6 +4,14 @@
   "description": "Standalone Loom bundle for DeepSeek Harness: branching conversations, worktree comparison, and Weave",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scasella/dsh-loom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scasella/dsh-loom/issues"
+  },
+  "homepage": "https://github.com/scasella/dsh-loom#readme",
   "engines": {
     "node": "^22.19.0 || >=24.0.0",
     "dsh": "0.2.1-rc.2"

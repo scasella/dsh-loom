@@ -2,6 +2,8 @@
 
 [English](README.md) | 中文
 
+[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2)
+
 一次生成多个续写，以树状结构探索，并保留每条路径。Loom 为官方 DeepSeek Harness Web 应用提供对话分支、Git worktree 代码比较和 Weave 散文编辑器。
 
 这是一个社区 bundle，目标运行时为 **`@deepseek-ai/dsh@0.2.1-rc.2`**。它通过原始 `dsh plugin` 命令安装，并自带兼容提供者，无需运行参考 Harness fork。此 alpha 通过 tarball 分发，尚未发布到 npm。独立 profile 的安装、启动、移除和功能检查均已通过。安装前请阅读[兼容性和验证状态](COMPATIBILITY.md)。
@@ -10,7 +12,7 @@
 
 https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 
-这段 3 分 54 秒的字幕演示在[参考实现](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f)上记录真实模型调用，使用捕获的界面状态并调整了展示时长。[完整画质 MP4](https://github.com/scasella/deepseek-harness/releases/download/loom-demo/Loom.mp4) · [字幕](https://github.com/scasella/deepseek-harness/releases/download/loom-demo/Loom.srt)。
+这段 3 分 54 秒的字幕演示展示相同的 Loom 功能，在[参考实现](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f)上记录真实模型调用，使用捕获的界面状态并调整了展示时长。[完整画质 MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.mp4) · [字幕](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.srt)。
 
 ## 功能
 
@@ -30,11 +32,13 @@ https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 npm install --global @deepseek-ai/dsh@0.2.1-rc.2
 ```
 
-从提供的构建中取得 `scasella-dsh-loom-0.1.0-alpha.2.tgz`。在 POSIX shell 中选择独立 home，并使用 tarball 的实际绝对路径安装：
+从 [Loom v0.1.0-alpha.2](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2) 下载 tarball。在 POSIX shell 中将这个固定版本安装到独立 home：
 
 ```sh
+curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.2.tgz \
+  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/scasella-dsh-loom-0.1.0-alpha.2.tgz
 export DSH_HOME="$HOME/.dsh-loom"
-dsh plugin --profile web add /absolute/path/scasella-dsh-loom-0.1.0-alpha.2.tgz
+dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.2.tgz"
 dsh web --no-open --port 3097
 ```
 

@@ -5,7 +5,7 @@
   "upstream_commit": "687f282e8625c6b8d11ff58211a90524be2e4317",
   "runtime": "@deepseek-ai/dsh@0.2.1-rc.2",
   "sdk": "@earendil-works/pi-ai@1.3.0",
-  "archive_sha256": "2821d880bc7d3cf3633ef5e8f326b488df2053d06b4d8165cc4fe44a6f18bcbb",
+  "archive_sha256": "ac1c3a83f3ffc6004c05ed4026cdddb090c4489f347885386ed435d50304bfb2",
   "standalone_tests": {
     "passed": 47,
     "failed": 0,
@@ -18,7 +18,7 @@
   "build": "passed",
   "strict_typecheck": "passed_host_and_client",
   "npm_pack_files": 85,
-  "source_text_files_scanned": 909,
+  "source_text_files_scanned": 910,
   "credential_matches": 0,
   "web_readiness": "passed",
   "uninstall_and_bundle_rollback": "passed",
@@ -26,5 +26,6 @@
   "official_runtime_tree_sha256": "528f5227fc341f170cb7eb484b00fc74bb6ca3f4ebb8cf06e984ac6d223f9460",
   "standalone_live_usd": 0.010281852,
   "total_live_usd": 0.07704597,
-  "live_cap_usd": 5
+  "live_cap_usd": 5,
+  "release_archive_reverified": "2026-10-19"
 }

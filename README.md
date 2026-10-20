@@ -2,6 +2,8 @@
 
 English | [中文](README.zh.md)
 
+[![Release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2)
+
 Generate several continuations, explore them as a tree, and keep every path. Loom adds conversation branching, code comparisons in Git worktrees, and the Weave prose editor to the official DeepSeek Harness Web application.
 
 This community bundle targets **`@deepseek-ai/dsh@0.2.1-rc.2`**. It installs through the original `dsh plugin` command and carries its own compatibility providers. You do not need the reference Harness fork to run it. This alpha is distributed as a tarball; it is not published on npm. Clean-profile installation, startup, removal, and feature checks pass. See [compatibility and validation status](COMPATIBILITY.md) before installation.
@@ -10,7 +12,7 @@ This community bundle targets **`@deepseek-ai/dsh@0.2.1-rc.2`**. It installs thr
 
 https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 
-The 3:54 captioned demo records real model calls on the [reference implementation](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f), with captured UI states and edited timing. [Full-quality MP4](https://github.com/scasella/deepseek-harness/releases/download/loom-demo/Loom.mp4) · [Captions](https://github.com/scasella/deepseek-harness/releases/download/loom-demo/Loom.srt).
+The 3:54 captioned demo shows the same Loom features with real model calls on the [reference implementation](https://github.com/scasella/deepseek-harness/tree/77ccab27d200241ddf49d0ec9f5de1524343374f), with captured UI states and edited timing. [Full-quality MP4](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.mp4) · [Captions](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/Loom.srt).
 
 ## Features
 
@@ -30,11 +32,13 @@ You need Node.js 24+ or Node.js 22.19+ within 22.x, Git 2.26+, pnpm on your PATH
 npm install --global @deepseek-ai/dsh@0.2.1-rc.2
 ```
 
-Obtain `scasella-dsh-loom-0.1.0-alpha.2.tgz` from the supplied build. In a POSIX shell, choose a separate home and install the tarball using its actual absolute path:
+Download the tarball from [Loom v0.1.0-alpha.2](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.2). In a POSIX shell, install this pinned release in a separate home:
 
 ```sh
+curl --fail --location --output scasella-dsh-loom-0.1.0-alpha.2.tgz \
+  https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.2/scasella-dsh-loom-0.1.0-alpha.2.tgz
 export DSH_HOME="$HOME/.dsh-loom"
-dsh plugin --profile web add /absolute/path/scasella-dsh-loom-0.1.0-alpha.2.tgz
+dsh plugin --profile web add "$PWD/scasella-dsh-loom-0.1.0-alpha.2.tgz"
 dsh web --no-open --port 3097
 ```
 
