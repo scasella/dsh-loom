@@ -22,8 +22,8 @@
   "credential_matches": 0,
   "web_readiness": "passed",
   "uninstall_and_bundle_rollback": "passed",
-  "official_runtime_entries_unchanged": 68789,
-  "official_runtime_tree_sha256": "528f5227fc341f170cb7eb484b00fc74bb6ca3f4ebb8cf06e984ac6d223f9460",
+  "official_runtime_entries_unchanged": 68790,
+  "official_runtime_tree_sha256": "2793c78161aab960abd97f386c5cc495d2c6b47f5095a19fc894958bd4728921",
   "standalone_live_usd": 0.010281852,
   "total_live_usd": 0.07704597,
   "live_cap_usd": 5,
@@ -33,7 +33,27 @@
   "npm_publication": {
     "registry": "https://registry.npmjs.org/",
     "tag": "alpha",
-    "status": "pending_authentication",
-    "registry_install": "not_run"
+    "dist_tags": {
+      "alpha": "0.1.0-alpha.4",
+      "latest": "0.1.0-alpha.4"
+    },
+    "status": "published",
+    "account": "scasella",
+    "published_date": "2026-10-20",
+    "registry_install": "passed_original_dsh_plugin_command_in_isolated_home",
+    "anonymous_download": "passed_matches_verified_archive",
+    "tarball": "https://registry.npmjs.org/@scasella/dsh-loom/-/dsh-loom-0.1.0-alpha.4.tgz",
+    "integrity": "sha512-jtdLS5yjz6mwf+zRW4W0CC220F6nv0wlPSg6sW8SbdjHOnwu0A+Yq0f+U3dl3E4Kw0xz48pFa/Eamwv2AM3UoA==",
+    "shasum": "0ed4f6316b8477b4fffa8800d1e65336ddd14f6d",
+    "installed_feature_tests": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "web_readiness": "passed",
+    "uninstall_and_bundle_rollback": "passed",
+    "official_runtime_entries_unchanged": 68790,
+    "official_runtime_tree_sha256": "2793c78161aab960abd97f386c5cc495d2c6b47f5095a19fc894958bd4728921",
+    "model_api_calls": 0
   }
 }
