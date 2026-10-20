@@ -2,7 +2,7 @@
 
 [English](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/README.md) | 中文
 
-[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.4) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3)
+[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.4) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.4)
 
 一次生成多个续写，以树状结构探索，并保留每条路径。Loom 为官方 DeepSeek Harness Web 应用提供对话分支、Git worktree 代码比较和 Weave 散文编辑器。
 

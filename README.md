@@ -2,7 +2,7 @@
 
 English | [中文](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/README.zh.md)
 
-[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.4) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.3)
+[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.4) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.4)
 
 Generate several continuations, explore them as a tree, and keep every path. Loom adds conversation branching, code comparisons in Git worktrees, and the Weave prose editor to the official DeepSeek Harness Web application.
 
