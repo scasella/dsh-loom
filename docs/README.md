@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-Install and use the standalone Loom bundle for the official DeepSeek Harness Web application. The pages below describe `@scasella/dsh-loom@0.1.0-alpha.4`; supported runtime and SDK versions are listed in compatibility.
+Install and use the standalone Loom bundle for the official DeepSeek Harness Web application. The pages below describe `@scasella/dsh-loom@0.1.0-alpha.5`; supported runtime and SDK versions are listed in compatibility.
 
 - [Installation and first run](../README.md#install) — install the pinned npm alpha, choose an isolated home, configure a model, and launch Web.
 - [User guide](guide.md) — conversation trees, Compare and worktrees, tool-result alternatives, Weave, token exploration, exports, keyboard controls, and mobile use.
@@ -10,7 +10,7 @@ Install and use the standalone Loom bundle for the official DeepSeek Harness Web
 - [Compatibility and migration](../COMPATIBILITY.md) — supported versions, settings IDs, existing-profile migration, and runtime limits.
 - [Verification](../VERIFICATION.md) — installation checks, feature evidence, and validation limits.
 - [Maintainer checks and releases](releasing.md) — current-checkout CI, trusted publishing, version preparation, and tagged npm releases.
-- [Acceptance review resolutions](review-resolutions.md) — source fixes, published-alpha caveats, and remaining provider validation limits.
+- [Acceptance review resolutions](review-resolutions.md) — fixes included in alpha.5, migration notes, and remaining provider validation limits.
 - [License and third-party notices](../THIRD_PARTY_NOTICES.md) — source attribution and included dependency licenses.
 
 Report bugs and request improvements in [dsh-loom issues](https://github.com/scasella/dsh-loom/issues).

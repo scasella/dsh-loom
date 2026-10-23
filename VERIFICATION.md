@@ -4,13 +4,13 @@ Verified on macOS with the official npm package `@deepseek-ai/dsh@0.2.1-rc.2`, i
 
 ## Acceptance review corrections
 
-The source checkout after alpha.4 resolves the acceptance findings in [review resolutions](docs/review-resolutions.md). On 2026-10-23, the final installed-tarball run passed all 108 tests, with zero failures or skips, through the original official Harness CLI. Web readiness and authentication passed; removal restored the original profile bundle list. All 68,790 official runtime entries remained unchanged, with tree SHA-256 `2793c78161aab960abd97f386c5cc495d2c6b47f5095a19fc894958bd4728921` excluding the documented runtime cache. No paid model calls ran.
+Alpha.5 resolves the alpha.4 acceptance findings in [review resolutions](docs/review-resolutions.md). On 2026-10-23, the final installed-tarball run passed all 108 tests, with zero failures or skips, through the original official Harness CLI. Web readiness and authentication passed; removal restored the original profile bundle list. All 68,790 official runtime entries remained unchanged, with tree SHA-256 `2793c78161aab960abd97f386c5cc495d2c6b47f5095a19fc894958bd4728921` excluding the documented runtime cache. No paid model calls ran.
 
 The current build regenerates Loom's Remote metadata from repository sources and pinned published declarations before bundling. Two consecutive generations produced identical artifacts. Both strict TypeScript faces and the npm-selected-file privacy check passed. The new regression cases cover immediate child question/approval refusals, queue progress and reload, depth refusal, explicit export source codecs, empty-path privacy, export escaping/expiry, retained applied diffs and write-failure handling, running-sibling archive admission, isolation prerequisites, inherited test-output exclusion, real DOM keyboard behavior, settings transfer, and the documented provider configuration. DOM tests use presentation doubles; they do not establish browser geometry or new provider support.
 
 A separate keyless Chromium walk used a fresh original-launcher Web profile and five deterministically authored Sessions. It exercised root `g` branching with children present, `k`/`x` state changes, durable variant/sample labels, a filled branch form at 390 pixels, and the selected Compare row. Adopt, Apply, Continue, and Discard were visible and reachable; document/body widths remained 390 pixels. The browser checked display and controls without applying files or making provider calls.
 
-These fixes are local source changes and are not present in the immutable published alpha.4 npm archive. The original release evidence below remains historical evidence for that archive; it is not a claim that its audited defects were absent.
+Alpha.5 includes these fixes; the immutable alpha.4 npm archive does not. The original release evidence below remains historical evidence for that archive; it is not a claim that its audited defects were absent.
 
 ## Repeat the checks
 
@@ -29,7 +29,7 @@ Provide a complete, independent official npm installation and the packed archive
 ```sh
 DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm run verify:stock -- \
   --runtime /absolute/path/official/node_modules/@deepseek-ai/dsh \
-  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.4.tgz \
+  --tarball /absolute/path/scasella-dsh-loom-0.1.0-alpha.5.tgz \
   --web-smoke
 ```
 

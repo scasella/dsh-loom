@@ -28,5 +28,5 @@ export function apply(ctx: Context): void {
     ['@deepseek-ai/dsh-api-session-controller', sessionController],
     ['@deepseek-ai/dsh-experimental-loom', loom],
   ] as const) ctx.typert.register(validateTypertManifest(owner, contribution))
-  ctx.provide('loomMetadata', Object.freeze({ version: '0.1.0-alpha.4' }))
+  ctx.provide('loomMetadata', Object.freeze({ version: '0.1.0-alpha.5' }))
 }

@@ -69,7 +69,7 @@ Open **Loom → Weave**, write an opening, place the cursor, choose a model and 
 
 Recorded answer probabilities use shading, dotted underlines, and written percentages. Open a token to inspect alternatives or explore a bounded token multiverse, then continue from a selected token. Uncaptured text and reasoning have no probability annotation. The explorer labels unshown probability mass only at positions it actually probed.
 
-The curation meter sums `log₂(N)` for each current choice among N completed Weave siblings. Replacing a choice replaces its credit; Chat marks and probe paths add none. Export the current path, its siblings, or kept prose nodes as HTML, text, or JSON. Review exports before sharing: they retain generated and authored text, attribution, and curation records. Text and HTML include the full JSON record. Select a recorded prose node before exporting; an empty Weave selection refuses download and never exports Chat. The published alpha.4 predates that guard: do not use its Export action with an empty prose selection.
+The curation meter sums `log₂(N)` for each current choice among N completed Weave siblings. Replacing a choice replaces its credit; Chat marks and probe paths add none. Export the current path, its siblings, or kept prose nodes as HTML, text, or JSON. Review exports before sharing: they retain generated and authored text, attribution, and curation records. Text and HTML include the full JSON record. Select a recorded prose node before exporting; an empty Weave selection refuses download and never exports Chat. This guard is included from alpha.5; upgrade older installations before using Export with an empty prose selection.
 
 <a id="autoloom"></a>
 ## Let a model explore

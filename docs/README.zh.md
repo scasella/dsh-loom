@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-在官方 DeepSeek Harness Web 应用中安装并使用独立 Loom bundle。以下页面适用于 `@scasella/dsh-loom@0.1.0-alpha.4`；支持的运行时与 SDK 版本见兼容性说明。
+在官方 DeepSeek Harness Web 应用中安装并使用独立 Loom bundle。以下页面适用于 `@scasella/dsh-loom@0.1.0-alpha.5`；支持的运行时与 SDK 版本见兼容性说明。
 
 - [安装与首次使用](../README.zh.md#install) — 安装固定版本的 npm alpha，选择独立 home，配置模型并启动 Web。
 - [用户指南](guide.zh.md) — 对话树、Compare 与 worktree、工具结果备选、Weave、词元探索、导出、键盘操作和移动端使用。
@@ -10,7 +10,7 @@
 - [兼容性与迁移](../COMPATIBILITY.md) — 支持的版本、设置 ID、现有 profile 迁移和运行时限制。
 - [验证](../VERIFICATION.md) — 安装检查、功能证据和验证范围。
 - [维护者检查与发布](releasing.zh.md) — 当前检出的 CI、可信发布、版本准备和通过标签发布 npm 包。
-- [验收审查处理记录](review-resolutions.zh.md) — 源码修复、已发布 alpha 的注意事项和剩余提供商验证限制。
+- [验收审查处理记录](review-resolutions.zh.md) — alpha.5 包含的修复、迁移说明和剩余提供商验证限制。
 - [许可与第三方声明](../THIRD_PARTY_NOTICES.md) — 源码归属与随附依赖许可证。
 
 请在 [dsh-loom 问题跟踪](https://github.com/scasella/dsh-loom/issues)中报告错误或提出改进建议。

@@ -1,12 +1,12 @@
 # Loom for DeepSeek Harness
 
-English | [中文](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/README.zh.md)
+English | [中文](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/README.zh.md)
 
-[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.4) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.4)
+[![npm alpha](https://img.shields.io/npm/v/@scasella/dsh-loom/alpha?label=npm%20alpha)](https://www.npmjs.com/package/@scasella/dsh-loom/v/0.1.0-alpha.5) [![GitHub release](https://img.shields.io/github/v/release/scasella/dsh-loom?include_prereleases&label=GitHub%20release)](https://github.com/scasella/dsh-loom/releases/tag/v0.1.0-alpha.5)
 
 Generate several continuations, explore them as a tree, and keep every path. Loom adds conversation branching, code comparisons in Git worktrees, and the Weave prose editor to the official DeepSeek Harness Web application.
 
-This community bundle targets **`@deepseek-ai/dsh@0.2.1-rc.2`**. It installs through the original `dsh plugin` command and carries its own compatibility providers. You do not need the reference Harness fork to run it. Install the pinned npm alpha below; the earlier GitHub tarball remains available. Clean-profile installation, startup, removal, and feature checks pass. See [compatibility and validation status](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/COMPATIBILITY.md) before installation.
+This community bundle targets **`@deepseek-ai/dsh@0.2.1-rc.2`**. It installs through the original `dsh plugin` command and carries its own compatibility providers. You do not need the reference Harness fork to run it. Install the pinned npm alpha below or use the matching GitHub release tarball. Clean-profile installation, startup, removal, and feature checks pass. See [compatibility and validation status](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/COMPATIBILITY.md) before installation.
 
 ## Demo
 
@@ -22,9 +22,9 @@ The 3:54 captioned demo shows the same Loom features with real model calls on th
 - **Write with Weave:** generate continuations at a cursor, retain siblings, inspect supported token probabilities, explore token alternatives, and export prose with curation records.
 - **Navigate and delegate:** browse Multiverse families, search own or inherited messages, use keyboard and mobile controls, and let models explore under explicit budgets.
 
-The [Loom user guide](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/guide.md) covers every workflow. See the [documentation index](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/README.md) for configuration, compatibility, and [verification](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/VERIFICATION.md). The npm package includes the English and Chinese user guides, configuration reference, and documentation index. Runtime features and supported Harness/SDK versions are unchanged.
+The [Loom user guide](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/docs/guide.md) covers every workflow. See the [documentation index](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/docs/README.md) for configuration, compatibility, and [verification](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/VERIFICATION.md). The npm package includes the English and Chinese user guides, configuration reference, and documentation index. The supported Harness/SDK versions are unchanged.
 
-The source checkout includes fixes from the acceptance review that are not yet published in the pinned alpha.4 package. See the [review resolutions](docs/review-resolutions.md), including the empty-Weave-export restriction, before sharing exports.
+Alpha.5 includes the [acceptance review fixes](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/docs/review-resolutions.md): children return logged errors for human questions and approvals, empty Weave selections cannot export Chat, and Compare retains newly applied diffs. It also improves keyboard controls, branch labels, costs, request inspection, and model setup guidance.
 
 <a id="install"></a>
 ## Install
@@ -39,15 +39,15 @@ In a POSIX shell, install the pinned npm alpha in a separate home:
 
 ```sh
 export DSH_HOME="$HOME/.dsh-loom"
-dsh plugin --profile web add @scasella/dsh-loom@0.1.0-alpha.4
+dsh plugin --profile web add @scasella/dsh-loom@0.1.0-alpha.5
 dsh web --no-open --port 3097
 ```
 
-The archived [GitHub v0.1.0-alpha.3 tarball](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.3/scasella-dsh-loom-0.1.0-alpha.3.tgz) is an alternative with the same Loom features. Download it, then use `dsh plugin --profile web add /absolute/path/scasella-dsh-loom-0.1.0-alpha.3.tgz` with the same home.
+The [GitHub v0.1.0-alpha.5 tarball](https://github.com/scasella/dsh-loom/releases/download/v0.1.0-alpha.5/scasella-dsh-loom-0.1.0-alpha.5.tgz) is an alternative installation source for this release. Download it, then use `dsh plugin --profile web add /absolute/path/scasella-dsh-loom-0.1.0-alpha.5.tgz` with the same home.
 
 Open the URL printed by the launcher, including its local authentication token. This home and port leave a normal `~/.dsh` installation on port 3080 unchanged. Choose another unused port if 3097 is occupied. Set the same `DSH_HOME` each time you resume Loom. Restart the Web instance after installation or removal.
 
-If you already have custom profiles or model settings, read [configuration migration](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/COMPATIBILITY.md#configuration-migration) before using an existing home. This bundle replaces selected providers only in the profile where you install it. Other runtime versions are unsupported; do not bypass a version refusal.
+If you already have custom profiles or model settings, read [configuration migration](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/COMPATIBILITY.md#configuration-migration) before using an existing home. This bundle replaces selected providers only in the profile where you install it. Other runtime versions are unsupported; do not bypass a version refusal.
 
 ## First run
 
@@ -73,8 +73,8 @@ Use the same home and profile, then restart. Models created in Loom remain saved
 
 ## Build and license
 
-The source project builds with `npm ci` and `npm run build`. `npm run pack:check` checks the actual npm pack list and scans packaged text for private files, machine paths, and unresolved source imports. Development sources are excluded from the installation tarball. See [COMPATIBILITY.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/COMPATIBILITY.md) for supported versions, settings IDs, and validation scope.
+The source project builds with `npm ci` and `npm run build`. `npm run pack:check` checks the actual npm pack list and scans packaged text for private files, machine paths, and unresolved source imports. Development sources are excluded from the installation tarball. See [COMPATIBILITY.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/COMPATIBILITY.md) for supported versions, settings IDs, and validation scope.
 
 Maintainer instructions for continuous checks, trusted publishing, and tagged npm releases are in the [release guide](https://github.com/scasella/dsh-loom/blob/main/docs/releasing.md).
 
-[MIT](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/LICENSE). Loom derives from the archived reference fork at commit `77ccab27d200241ddf49d0ec9f5de1524343374f` and from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), developed by DeepSeek AI. Third-party notices are in [THIRD_PARTY_NOTICES.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/THIRD_PARTY_NOTICES.md). This package is community maintained and is not an official DeepSeek release.
+[MIT](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/LICENSE). Loom derives from the archived reference fork at commit `77ccab27d200241ddf49d0ec9f5de1524343374f` and from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), developed by DeepSeek AI. Third-party notices are in [THIRD_PARTY_NOTICES.md](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.5/THIRD_PARTY_NOTICES.md). This package is community maintained and is not an official DeepSeek release.
