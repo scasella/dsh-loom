@@ -84,11 +84,18 @@ export class LoomExporter {
 
   private async snapshot(request: LoomExportRequest, canReach: (id: SessionId) => boolean, signal: AbortSignal): Promise<LoomExportValue> {
     const format = request.format ?? 'json'
+    const source = request.source ?? 'weave'
+    if (source === 'weave' && request.nodeId === undefined) {
+      throw this.unavailable(request.sessionId, 'Select a recorded prose path before exporting. Agent transcripts require an explicit sessions export.')
+    }
+    if (source === 'sessions' && request.nodeId !== undefined) {
+      throw this.unavailable(request.sessionId, 'A prose node cannot select an agent transcript export. Export the prose path instead.')
+    }
     const focused = await inspectSession(this.ctx, request.sessionId, signal)
     const document = readWeaveDocument(focused.events)
     let value: unknown
     let text: string
-    if (request.nodeId !== undefined) {
+    if (source === 'weave' && request.nodeId !== undefined) {
       const focus = document.state.nodes.find(node => node.id === request.nodeId)
       if (focus === undefined) throw new RemoteError('loom/node-not-found', 'Select a recorded prose node to export.', { sessionId: request.sessionId, nodeId: request.nodeId })
       let nodes: readonly LoomWeaveNode[]

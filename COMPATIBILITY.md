@@ -12,7 +12,7 @@ Version `0.1.0-alpha.4` is the npm alpha. Its Loom features and supported runtim
 
 Verification passed on 2026-10-19 using the official npm installation, an independently packed tarball, and a fresh isolated Web profile. The original launcher installed the bundle, all eight installed-tarball feature integration tests passed, Web readiness and its authentication exchange passed on an allocated port, and CLI removal restored the original bundle list. Checksums confirmed that all 68,789 official installation entries remained unchanged. No version exemption was used.
 
-The independent source build and both strict TypeScript faces pass; compiler input audits found no files outside this project. The standalone suite passes 48 tests. The npm distribution audit checks the selected files, including full third-party license texts, for credential matches, private files, machine paths, and unresolved source imports. The source project includes `scripts/verify-stock.mjs` to repeat clean-profile acceptance against an explicit official installation and tarball.
+The independent source build and both strict TypeScript faces pass; compiler input audits found no files outside this project. The original release suite passed 48 tests; the current source correction run passes 108. See [acceptance review corrections](VERIFICATION.md#acceptance-review-corrections) for the dated results and published-package caveat. The npm distribution audit checks the selected files, including full third-party license texts, for credential matches, private files, machine paths, and unresolved source imports. The source project includes `scripts/verify-stock.mjs` to repeat clean-profile acceptance against an explicit official installation and tarball.
 
 A separate real-browser run on the original launcher verified worktree branches with real tests, Compare/list prices, Apply/Adopt/Discard, retained Weave choices, captured probabilities, alternative-token and probe-path continuation, export, all five autoloom cards, counterfactual continuation, own/inherited search, tree keyboard marks, and a 390-pixel sibling sheet. Compare and Weave had no document overflow at 390 pixels. Decoded logs and source files confirmed the effects. This run cost USD 0.010281852; total Loom implementation spending is USD 0.077045970 of the approved USD 5 cap.
 
@@ -54,11 +54,20 @@ The bundle disables selected stock rows and inserts unique compatibility rows in
 
 The bundle's new rows disappear when it is removed, and its stock-row disable layer is withdrawn. Custom compatibility-ID overlays remain user configuration; retain or remove them deliberately. Restore the original-ID overrides when returning to the stock profile. Session histories remain in the Harness home; exports and worktree cleanup are separate operations.
 
+<a id="return-to-stock-model-settings"></a>
+## Return to stock model settings
+
+Removing Loom keeps its saved model configuration under `loom-compat-llm-pi-ai` and credentials in the same Harness home. The stock adapter reads `llm-pi-ai`, so the model selector can show **No models available** even though no data was deleted. Reinstalling Loom restores its configuration immediately.
+
+To keep using those models without Loom, stop the Web profile and privately back up its `cordis.patch.yml` and credential store. In the selected profile's patch document, copy the complete `config` from the `loom-compat-llm-pi-ai` entry into the existing `llm-pi-ai` entry, or add an original-ID entry if absent. Remove the copied `name` assertion: it names Loom's installed file. Keep the original compatibility entry as your rollback copy. If a stock configuration already exists, reconcile providers deliberately instead of overwriting it. Never duplicate an entry ID.
+
+Before loading the stock adapter, remove Loom-only per-model `assistantPrefill` and `tokenLogprobs` declarations from both `models` and `modelOverrides` and route `openRouterProvider` fields from the stock copy. Retain `apiKeyEnv` references; credentials in this home remain available. Remove Loom through `dsh plugin --profile web remove @scasella/dsh-loom`, restart, and check the Models page and a simple turn. A model or protocol absent from the pinned stock SDK still needs a supported Custom model API configuration. Alternatively, create the providers again from the stock Models page using the same credential references. Keep backups and settings out of Git and shared screenshots.
+
 ## Runtime limits
 
 Worktree isolation requires a committed Git repository and workspace-write permission. It carries tracked changes, excludes untracked and ignored files, and does not install dependencies. Apply requires a clean source checkout. Adopt archives sibling histories and does not apply a patch or remove worktrees.
 
-Weave requires tool-free assistant-prefix capability. Probability annotations and token exploration require captured answer probabilities; reasoning and uncaptured text have no probability annotation. Provider support depends on the configured route. Shared-prefix scheduling can improve cache reuse but does not guarantee cache hits.
+Weave requires tool-free assistant-prefix capability. Probability annotations and token exploration require captured answer probabilities; reasoning and uncaptured text have no probability annotation. Provider support depends on the configured route and explicit model declarations; follow [Weave provider setup](docs/configuration.md#weave-provider-setup). Shared-prefix scheduling can improve cache reuse but does not guarantee cache hits.
 
 No prices ship by default. Dollar figures require configured provider/model prices and are list-price estimates. Autonomous limits are checked before expansion; a final settled response can overshoot token or dollar limits. Branch queues, retained set status, autonomous budgets, warm-prefix hints, and download URLs live in Host memory and do not survive restart. Histories, prose nodes, and choices persist. Experimental record compatibility remains best effort.
 

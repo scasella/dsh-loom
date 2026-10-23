@@ -88,6 +88,17 @@ export interface LoomIsolationEndRecord {
   readonly reason: 'applied' | 'discarded'
 }
 
+/** Bounded display diffs retained after a worktree change is applied, independent of checkout lifetime. */
+export interface LoomAppliedDiffRecord {
+  readonly version: 1
+  /** Complete changed-file counts captured from the applied worktree. */
+  readonly summary: LoomCompareDiff
+  /** Whole file diffs retained in path order within `diff.maxBytes`. */
+  readonly diffs: readonly { readonly path: string; readonly unified: string }[]
+  /** Whether changed files were omitted from the retained display text. */
+  readonly truncated: boolean
+}
+
 /** Adoption of the Session that holds it as the line to continue, written by `loom.adopt`. */
 export interface LoomAdoptRecord {
   /** Record payload version; readers ignore other versions. */
@@ -106,6 +117,8 @@ declare module '@deepseek-ai/dsh-session/types' {
     'plugin:loom/isolation': LoomIsolationRecord
     /** Removal of the worktree the same Session's `plugin:loom/isolation` record names; never model-visible. */
     'plugin:loom/isolation-end': LoomIsolationEndRecord
+    /** Applied worktree diff evidence retained before checkout removal; ignorable and never model-visible. */
+    'plugin:loom/applied-diff': LoomAppliedDiffRecord
     /** Adoption of the Session that holds it; never model-visible. */
     'plugin:loom/adopt': LoomAdoptRecord
   }
@@ -284,7 +297,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
     }
     /**
      * `loom.apply` wrote the change into the source folder and then could not
-     * remove the worktree, which stays until `loom.discard` succeeds.
+     * save its diff evidence or remove the worktree. The worktree remains until cleanup succeeds.
      */
     'loom/worktree-cleanup-failed': {
       readonly sessionId: SessionId
@@ -388,6 +401,8 @@ export interface LoomRequestSystemPrompt {
 export interface LoomRequestTools {
   /** Tool names in request order. */
   readonly names: readonly string[]
+  /** Complete logged tool definitions as formatted JSON strings, in request order. */
+  readonly definitions: readonly string[]
   /**
    * Tools that `developer/message` tool additions activated in the request's
    * turn, up to the request, in log order without repeats. The first request
@@ -412,6 +427,8 @@ export interface LoomRequestMessage {
    * in `…` when cut.
    */
   readonly preview: string
+  /** Complete logged message text with whitespace preserved; attachments render as names. */
+  readonly text: string
   /** Length of the complete message text in Unicode code points. */
   readonly chars: number
 }
@@ -712,8 +729,8 @@ export interface LoomCompareRow {
   /** The last test summary in the Session's own command output; absent when none matched. */
   readonly tests?: LoomCompareTests
   /**
-   * Changed files; absent when they cannot be read: a removed or missing
-   * worktree, or a shared folder whose changes this Host does not hold.
+   * Changed files, including retained evidence after Apply; absent for a discarded or missing
+   * worktree without retained evidence, or a shared folder whose changes this Host does not hold.
    */
   readonly diff?: LoomCompareDiff
   readonly own: LoomCompareOwn

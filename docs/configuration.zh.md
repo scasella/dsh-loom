@@ -31,6 +31,8 @@ dsh web --patch /absolute/path/loom-config.overlay.yml --no-open --port 3097
 
 补丁会替换目标条目的整个 `config`；省略的字段采用 schema 默认值。请将现有自定义字段一起复制到替换配置中。自定义 `tool-loom` 配置时请保留 `childPermissionPreset: loom-child`：插件 schema 默认使用 `auto`，本 bundle 则显式指定 `loom-child`。通过 Settings 配置模型凭据；不要将密钥写入 overlay 或共享示例。
 
+在配置档安装时，固定的 `@deepseek-ai/cordis@4.0.5` peer 依赖可能产生 pnpm peer 警告。仅有警告不表示安装失败；请确认 `dsh plugin --profile web list` 包含 Loom，且 Web 已就绪。请勿绕过运行时或 SDK 版本拒绝。
+
 ## 分支和工作区更改
 
 以下字段属于 `loom` 条目。[用户指南](guide.zh.md#compare) 介绍了 Apply、Adopt 和 Discard。
@@ -78,7 +80,44 @@ dsh web --patch /absolute/path/loom-config.overlay.yml --no-open --port 3097
 | `defaultWaitMs` / `maxWaitMs` | `120000` / `1800000` | `loom_wait` 的默认和最长等待时间，单位为毫秒。 |
 | `defaultReadChars` / `maxReadChars` | `4000` / `20000` | `loom_read` 的默认和最大输出字符数。 |
 
-展开操作在创建 fork 前检查预算。已结算的自身用量超出 token 或美元预算时，用量监视器会停止子分支；最后一次响应可能超出预算。自主预算和排队中的分支启动状态保存在 Host 内存中，重启后重置。具体操作见[autoloom 流程](guide.zh.md#autoloom)。
+子分支请求人工回答或审批时，会立即返回已记录的错误；子分支可以在最终回答中说明缺少的决策。展开操作在创建 fork 前检查预算。已结算的自身用量超出 token 或美元预算时，用量监视器会停止子分支；最后一次响应可能超出预算。自主预算和排队中的分支启动状态保存在 Host 内存中，重启后重置。具体操作见[autoloom 流程](guide.zh.md#autoloom)。
+
+<a id="weave-provider-setup"></a>
+## Weave 提供商设置
+
+固定版本的 Pi 目录不会声明 Loom 的可选生成能力。选择目录模型或切换模型选择器无法启用这些能力。请在 `loom-compat-llm-pi-ai` overlay 中为准确的模型声明 `assistantPrefill`；使用概率控件时还须声明 `tokenLogprobs`。这些声明需要 `openai-completions` 协议；本 bundle 的 Anthropic Messages 和 OpenAI Responses 路由不支持这些 Loom 控件。
+
+| 路由 | 前缀声明 | 证据与限制 |
+|---|---|---|
+| DeepSeek 官方 beta，`deepseek-flash` | `deepseek-prefix` | [官方前缀指南](https://api-docs.deepseek.com/guides/chat_prefix_completion/)要求使用 beta 端点及前缀标记。[Chat API](https://api-docs.deepseek.com/api/create-chat-completion)记录了回答 logprobs。序列化已有无密钥测试；本次审查未进行有余额的官方 API 调用。 |
+| OpenRouter，`deepseek/deepseek-v4.1-flash-1017`，固定使用 `deepseek` 提供商 | `trailing-message` | 独立版验收运行曾在此路由记录续写与概率。这是针对特定路由的证据，不保证其他 OpenRouter 模型、提供商或后续路由可用。 |
+
+使用官方路由时，请将以下提供商合并到 overlay 中，保留所有现有提供商，因为 patch 会替换完整的 `config`。在 Harness 凭证中按指定引用保存密钥，或使用私有启动环境；示例中没有密钥。重启后，在 Weave 模型选择器中选择 **DeepSeek Weave → deepseek-flash**。
+
+```yaml
+- id: loom-compat-llm-pi-ai
+  config:
+    providers:
+      loom-deepseek-beta:
+        displayName: DeepSeek Weave
+        apiKeyEnv: DEEPSEEK_API_KEY
+        api: openai-completions
+        baseURL: https://api.deepseek.com/beta
+        compat:
+          thinkingFormat: deepseek
+        models:
+          - id: deepseek-flash
+            assistantPrefill: deepseek-prefix
+            tokenLogprobs:
+              maxTopLogprobs: 20
+            reasoningEfforts:
+              off:
+              high: high
+```
+
+使用曾测试的 OpenRouter 路由时，请设置 `api: openai-completions`、`baseURL: https://openrouter.ai/api/v1`、你的 `OPENROUTER_DEEPSEEK_API_KEY` 凭证引用、`compat: { thinkingFormat: openrouter }`，以及 `openRouterProvider: { order: [deepseek], allowFallbacks: false }`。在模型 `deepseek/deepseek-v4.1-flash-1017` 上声明 `assistantPrefill: trailing-message`、相同的 `tokenLogprobs` 块和 `reasoningEfforts: { off: null, high: high }`。请勿将账户专属预设模型 ID 复制到共享配置中。
+
+先尝试一次短续写。能力声明记录端点承诺的能力，不会为提供商添加功能。如果提供商拒绝前缀或没有返回对齐的概率，请删除不受支持的声明，或选择其他已有文档的路由。Weave 使用无工具调用，在模型声明 Off 设置时关闭推理，并且仅为捕获到概率的回答文本添加标注。
 
 ## Weave、token 探索和导出
 

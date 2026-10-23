@@ -64,8 +64,8 @@ export function VariantPagerBody({ sessionId, useSessions, useLoomFamily, openSe
   }
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>): void => {
     switch (event.key) {
-      case 'ArrowLeft': buttons.current[0]?.focus(); break
-      case 'ArrowRight': buttons.current[1]?.focus(); break
+      case 'ArrowLeft': buttons.current[previous === undefined ? 1 : 0]?.focus(); break
+      case 'ArrowRight': buttons.current[next === undefined ? 0 : 1]?.focus(); break
       case 'Home': open(members[0]); break
       case 'End': open(members.at(-1)); break
       default: return
@@ -78,7 +78,7 @@ export function VariantPagerBody({ sessionId, useSessions, useLoomFamily, openSe
       type="button"
       className={classes(css.action, css.pagerButton)}
       aria-label={label}
-      aria-disabled={target === undefined || undefined}
+      disabled={target === undefined}
       data-unavailable={target === undefined || undefined}
       tabIndex={at === stop ? 0 : -1}
       onClick={() => { open(target) }}

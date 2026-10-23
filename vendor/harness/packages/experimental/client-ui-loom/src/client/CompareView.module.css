@@ -375,3 +375,9 @@
     min-height: 44px;
   }
 }
+
+.listPrice {
+  display: block;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}

@@ -358,6 +358,7 @@ export function ModelListEditor(props: ModelListEditorProps): ReactNode {
           {busy ? t('fetching') : t('fetchModels')}
         </button>
       </div>
+      {catalogProvider === undefined ? null : <p className={styles['modelEmpty']}>{t('catalogModelHint')}</p>}
       {models.length === 0 ? <p className={styles['modelEmpty']}>{t('modelsEmpty')}</p> : null}
       <div className={styles['modelList']}>
         {models.map((model, index) => (

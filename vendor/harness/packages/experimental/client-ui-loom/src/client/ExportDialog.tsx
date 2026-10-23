@@ -29,9 +29,10 @@ export function ExportDialog({ open, close, sessionId, nodeId, state, preview, e
   const [failed, setFailed] = useState(false)
   const [saved, setSaved] = useState(false)
   const download = async (): Promise<void> => {
+    if (nodeId === undefined) return
     setPending(true); setFailed(false); setSaved(false)
     try {
-      const result = await exportLoom({ sessionId, mode, format, ...nodeId === undefined ? {} : { nodeId } })
+      const result = await exportLoom({ sessionId, source: 'weave', mode, format, ...nodeId === undefined ? {} : { nodeId } })
       if (!result.ok) { setFailed(true); return }
       downloadLoom(result.value)
       setSaved(true)
@@ -41,7 +42,7 @@ export function ExportDialog({ open, close, sessionId, nodeId, state, preview, e
   }
   return (
     <Modal open={open} onClose={close} title={t('export.title')} closeLabel={t('export.close')} className={classes(css.dialog)}
-      footer={<><Button onClick={close}>{t('export.cancel')}</Button><Button variant="primary" disabled={pending}
+      footer={<><Button onClick={close}>{t('export.cancel')}</Button><Button variant="primary" disabled={pending || nodeId === undefined}
         onClick={() => { void download() }}>{t(pending ? 'export.preparing' : 'export.download')}</Button></>}>
       <div className={css.columns}>
         <div>

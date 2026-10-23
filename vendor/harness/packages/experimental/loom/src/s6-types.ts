@@ -175,6 +175,9 @@ export type LoomProseUnavailableReason = 'unsupported-prefix' | 'unsupported-log
 export interface LoomExportRequest {
   readonly sessionId: SessionId
   readonly mode: 'path' | 'siblings' | 'kept'
+  /** Omission selects prose. Full agent transcripts require explicit `sessions`. */
+  readonly source?: 'weave' | 'sessions'
+  /** Recorded prose node; required when source is omitted or `weave`, refused with `sessions`. */
   readonly nodeId?: LoomNodeId
   /** Default json. */
   readonly format?: 'html' | 'text' | 'json'

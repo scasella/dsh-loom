@@ -369,6 +369,24 @@ function RequestFacts({ requestKey, turn, usage, counts, useLoomRequest, t }: Pi
         <span aria-hidden="true">{t('sep')}</span>
         <ClippedText text={t('saw.routeLine', { route })} className={css.route} />
       </p>
+      <p className={css.status}>{t('saw.loggedNote')}</p>
+      <details className={css.requestPart}>
+        <summary>{t('saw.system')}</summary>
+        <pre>{view.systemPrompt.text}</pre>
+      </details>
+      <details className={css.requestPart}>
+        <summary>{t('saw.toolDefinitions')}</summary>
+        <pre>{view.tools.definitions.join('\n\n')}</pre>
+      </details>
+      <ol className={css.requestMessages} aria-label={t('saw.messageContents')}>
+        {view.messages.map(message => <li key={message.seq}>
+          <details className={css.requestPart}>
+            <summary>{t('saw.message', { role: message.role, seq: message.seq,
+              ownership: t(message.inherited ? 'saw.inherited' : 'saw.own') })}</summary>
+            <pre>{message.text}</pre>
+          </details>
+        </li>)}
+      </ol>
     </div>
   )
 }

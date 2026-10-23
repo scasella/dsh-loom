@@ -10,6 +10,7 @@
 - [兼容性与迁移](../COMPATIBILITY.md) — 支持的版本、设置 ID、现有 profile 迁移和运行时限制。
 - [验证](../VERIFICATION.md) — 安装检查、功能证据和验证范围。
 - [维护者检查与发布](releasing.zh.md) — 当前检出的 CI、可信发布、版本准备和通过标签发布 npm 包。
+- [验收审查处理记录](review-resolutions.zh.md) — 源码修复、已发布 alpha 的注意事项和剩余提供商验证限制。
 - [许可与第三方声明](../THIRD_PARTY_NOTICES.md) — 源码归属与随附依赖许可证。
 
 请在 [dsh-loom 问题跟踪](https://github.com/scasella/dsh-loom/issues)中报告错误或提出改进建议。

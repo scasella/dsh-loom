@@ -6,7 +6,7 @@
  */
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { WorktreeGitResult, WorktreeService } from '@deepseek-ai/dsh-experimental-worktree'
-import type { LoomCompareDiffFile, LoomIsolationRecord } from './types.ts'
+import type { LoomAppliedDiffRecord, LoomCompareDiffFile, LoomIsolationRecord } from './types.ts'
 
 /** Options of every diff Loom reads: no external diff or text conversion programs, no color, no rename pairing. */
 const DIFF_OPTIONS = ['--no-ext-diff', '--no-textconv', '--no-color', '--no-renames'] as const
@@ -145,6 +145,36 @@ export async function worktreeUnifiedDiff(
     used += Buffer.byteLength(text.stdout)
   }
   return { unified, truncated: false }
+}
+
+/**
+ * Capture changed-file counts and bounded display diffs before an applied worktree is removed.
+ * @param target - idle worktree whose change is being applied.
+ * @param maxBytes - total UTF-8 display-text budget; omitted files remain in the summary.
+ * @returns durable evidence containing only whole file diffs.
+ */
+export async function worktreeDiffEvidence(target: WorktreeTarget, maxBytes: number): Promise<LoomAppliedDiffRecord> {
+  const files = await changedFiles(target)
+  const diffs: { path: string; unified: string }[] = []
+  let used = 0
+  let truncated = false
+  for (const file of files) {
+    const text = await fileDiff(target, file, [], Math.max(1, maxBytes - used))
+    if (text.truncated) { truncated = true; break }
+    diffs.push({ path: file.path, unified: text.stdout })
+    used += Buffer.byteLength(text.stdout)
+  }
+  return {
+    version: 1,
+    summary: {
+      files: files.map(({ path, insertions, deletions }) => ({ path, insertions, deletions })),
+      insertions: files.reduce((sum, file) => sum + file.insertions, 0),
+      deletions: files.reduce((sum, file) => sum + file.deletions, 0),
+      source: 'worktree',
+    },
+    diffs,
+    truncated,
+  }
 }
 
 /** The worktree's whole change as one binary-safe patch for `git apply`. */

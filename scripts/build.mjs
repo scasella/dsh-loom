@@ -5,12 +5,14 @@ import { existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+await import('./generate-loom.mjs')
+
 const root = fileURLToPath(new URL('../', import.meta.url))
 const json = async path => JSON.parse(await readFile(join(root, path), 'utf8'))
 const [host, llm, client, extraction] = await Promise.all([
   json('host-plan.json'), json('llm-plan.json'), json('client-plan.json'), json('extraction.json'),
 ])
-await rm(join(root, 'dist'), { recursive: true, force: true })
+await rm(join(root, 'dist'), { recursive: true, force: true, maxRetries: 3, retryDelay: 100 })
 const entries = { index: 'src/index.ts', ...llm.entries }
 for (const [key, value] of Object.entries(host.entries)) entries[key.endsWith('/index') ? key : `${key}/index`] = value
 for (const entry of client.entries) entries[`${entry.outdir.replace(/^dist\//, '')}/index`] ??= entry.hostSource

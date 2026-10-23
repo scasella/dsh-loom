@@ -80,7 +80,7 @@ async function styleModule(id, filename, source, inline) {
   const css = result.code.toString()
   if (inline) return `export default ${JSON.stringify(css)};`
   const classes = {}
-  for (const [key, value] of Object.entries(result.exports ?? {})) {
+  for (const [key, value] of Object.entries(result.exports ?? {}).sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0)) {
     classes[key] = [value.name, ...value.composes.map(item => item.name)].join(' ')
   }
   const tagId = `${id}/${relative(root, filename).replaceAll('\\', '/')}`

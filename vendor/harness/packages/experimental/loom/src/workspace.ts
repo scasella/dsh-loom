@@ -28,11 +28,13 @@ import {
   compareText,
   conflictPaths,
   worktreeChanges,
+  worktreeDiffEvidence,
   worktreePatch,
   worktreeUnifiedDiff,
   type WorktreeTarget,
 } from './worktree-git.ts'
 import type {
+  LoomAppliedDiffRecord,
   LoomAdoptRequest,
   LoomAdoptValue,
   LoomApplyRequest,
@@ -199,7 +201,7 @@ export class LoomWorkspace {
 
   /**
    * Unified diff of one branch: Git against the base commit for a worktree
-   * child, the per-turn change summaries of its own turns for a shared one.
+   * child, retained display evidence after Apply, or the per-turn change summaries of its own turns for a shared one.
    * @param request - the branch and an optional file.
    * @param signal - caller cancellation.
    * @returns the text and whether files were left out.
@@ -210,6 +212,9 @@ export class LoomWorkspace {
       const inspected = await this.inspect(request.sessionId, operation)
       const { isolation } = inspected.own
       if (isolation === undefined) return this.sharedDiff(inspected, request.path, operation)
+      if (inspected.own.isolationEnded && inspected.own.appliedDiff !== undefined) {
+        return this.retainedDiff(inspected.own.appliedDiff, request.path)
+      }
       const target = await this.worktreeOf(inspected, isolation, operation)
       return worktreeUnifiedDiff(target, request.path, this.options.diffMaxBytes)
     })
@@ -263,7 +268,7 @@ export class LoomWorkspace {
 
   /**
    * Copy a worktree child's change into the source folder with `git apply`,
-   * then remove the worktree and record its end. Refused before any write
+   * retain bounded display evidence, then remove the worktree and record its end. Refused before any write
    * when the source folder has tracked changes or the change does not apply;
    * untouched files keep their bytes.
    * @param request - the branch.
@@ -293,6 +298,7 @@ export class LoomWorkspace {
           const status = await worktrees.git(agent, { cwd: source, args: ['--no-optional-locks', 'status', '--porcelain=v1', '-z', '--untracked-files=no'] }, target.signal)
           const dirty = changedTrackedPaths(status.stdout)
           if (dirty.length > 0) throw new RemoteError('loom/apply-dirty', `the source folder has changes in ${String(dirty.length)} tracked files`, { paths: dirty })
+          const evidence = await worktreeDiffEvidence(target, this.options.diffMaxBytes)
           if (change.patch.length > 0) {
             const check = await worktrees.git(agent, {
               cwd: source, args: ['apply', '--check', '--binary'], stdin: change.patch, allowedExitCodes: [0, 1], disableFilters: true,
@@ -302,6 +308,14 @@ export class LoomWorkspace {
             }
             // The write runs to completion once started, so that unloading never leaves a partly applied change.
             await worktrees.git(agent, { cwd: source, args: ['apply', '--binary'], stdin: change.patch, disableFilters: true })
+          }
+          appendPluginRecord(agent.session, 'plugin:loom/applied-diff', evidence)
+          try {
+            await this.ctx.sessions.flush(agent.session)
+          } catch (error) {
+            throw new RemoteError('loom/worktree-cleanup-failed', `the change was applied, but its diff evidence could not be saved; the worktree at ${isolation.worktreePath} was retained: ${messageOf(error)}`, {
+              sessionId: agent.id, worktreePath: isolation.worktreePath, applied: change.paths,
+            }, { cause: error })
           }
           await this.removeWorktree(target, 'applied', change.paths)
           return { applied: change.paths.map(path => ({ path })) }
@@ -519,7 +533,8 @@ export class LoomWorkspace {
     const { isolation } = inspected.own
     if (isolation === undefined) return this.sharedStat(inspected)
     const worktrees = this.ctx.get('worktrees')
-    if (inspected.own.isolationEnded || worktrees === undefined) return undefined
+    if (inspected.own.isolationEnded) return inspected.own.appliedDiff?.summary
+    if (worktrees === undefined) return undefined
     try {
       return await this.worktreeStat(worktrees, inspected, isolation, signal)
     } catch (error) {
@@ -598,6 +613,22 @@ export class LoomWorkspace {
       }
     }
     return { unified, truncated: false }
+  }
+
+  /** Read retained whole-file text while honoring the Host's current display limit. */
+  private retainedDiff(evidence: LoomAppliedDiffRecord, path: string | undefined): LoomDiffValue {
+    const files = evidence.diffs.filter(file => path === undefined || file.path === path)
+    let unified = ''
+    let used = 0
+    for (const file of files) {
+      const bytes = Buffer.byteLength(file.unified)
+      if (used + bytes > this.options.diffMaxBytes) return { unified, truncated: true }
+      unified += file.unified
+      used += bytes
+    }
+    const omitted = path === undefined ? evidence.truncated
+      : evidence.summary.files.some(file => file.path === path) && files.length === 0
+    return { unified, truncated: omitted }
   }
 
   /**

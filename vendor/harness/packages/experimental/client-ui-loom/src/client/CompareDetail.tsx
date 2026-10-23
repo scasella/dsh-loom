@@ -77,6 +77,7 @@ export function CompareDetail({
   const files = row.diff?.files ?? []
   const worktreeEnded = row.worktreeEnded === true || result?.kind === 'apply' || result?.kind === 'discard'
   const worktree = row.isolation === 'worktree' && !worktreeEnded
+  const readableDiff = !worktreeEnded || (row.diff !== undefined && result?.kind !== 'discard')
   const busy = pending || row.running
 
   const run = async <Value,>(call: () => Promise<LoomValueOutcome<Value>>, done: (value: Value) => DetailResult): Promise<void> => {
@@ -144,10 +145,10 @@ export function CompareDetail({
               {t('action.discard')}
             </button>
           )
-          : <p className={css.hint}>{t(row.isolation === 'worktree' ? 'detail.worktreeUnavailable' : 'detail.shared')}</p>}
+          : <p className={css.hint}>{t(row.isolation === 'worktree' ? readableDiff ? 'detail.appliedDiff' : 'detail.worktreeUnavailable' : 'detail.shared')}</p>}
       </div>
       <div className={css.diff}>
-        {!worktreeEnded && files.length > 1 && (
+        {readableDiff && files.length > 1 && (
           <div role="group" aria-label={t('detail.filesAria')} className={css.files}>
             <FileTab pressed={path === null} onPress={() => { setPath(null) }} label={t('detail.allFiles')} />
             {files.map(file => (
@@ -162,7 +163,7 @@ export function CompareDetail({
             ))}
           </div>
         )}
-        {row.isolation === 'worktree' && !worktree
+        {row.isolation === 'worktree' && !readableDiff
           ? <p className={css.status}>{t('detail.worktreeUnavailable')}</p>
           : <DiffPane row={row} path={path} useLoomDiff={useLoomDiff} t={t} />}
       </div>

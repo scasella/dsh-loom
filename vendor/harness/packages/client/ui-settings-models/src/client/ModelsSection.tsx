@@ -414,6 +414,7 @@ function Loaded({ injected, renderSlot }: { injected: ModelsSectionFace; renderS
     <div className={styles['section']}>
       <h2 className={styles['title']}>{t('title')}</h2>
       <p className={styles['intro']}>{t('intro')}</p>
+      {piAi === undefined ? null : <p className={styles['notice']}>{t('loomModelSettings')}</p>}
       {!state.writable && state.status === 'ready' ? <p className={styles['notice']}>{t('readOnly')}</p> : null}
       {savedIdentity === undefined
         ? null

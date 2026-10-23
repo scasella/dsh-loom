@@ -2,8 +2,8 @@
  * The running-branches strip in a Session's input dock while branch sets it
  * started or branched still run, wait, or failed: counts of running, queued,
  * waiting-for-approval, and failed children, one row per child, and controls
- * to withdraw queued children. A row is named by its steering line or its
- * position, never by its Session title; it opens the child's Session once the
+ * to withdraw queued children. A row is named by its stable request
+ * position, including after reload; it opens the child's Session once the
  * child has one. The strip reads a set's status again whenever one of its
  * children starts, ends, or asks for approval while others wait, and
  * {@link POLL_DELAY_MS} after each read while a set waits with no child
@@ -50,12 +50,12 @@ function SetPoll({ setId, pollKey, refreshSet }: { setId: LoomSetId; pollKey: st
 }
 
 /**
- * Visible name of one child: its steering line, else its position. A child's
+ * Visible name of one child: its stable request position, including after reload. A child's
  * Session title does not tell siblings apart, because steer and variants
  * children inherit the source title and the others keep the fallback title.
  */
 function itemLabel(item: LoomStripItem, t: LoomTranslate): string {
-  return item.line ?? t('strip.position', { index: item.index + 1 })
+  return t('strip.position', { index: item.index + 1 })
 }
 
 /**

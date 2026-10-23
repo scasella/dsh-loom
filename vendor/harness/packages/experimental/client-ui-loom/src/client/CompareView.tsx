@@ -207,7 +207,7 @@ interface CompareTableProps {
 function CompareTable({ table, group, picked, onPick, setMark, detail, t }: CompareTableProps) {
   const columns = [
     ['branch', 'compare.col.branch'], ['tests', 'compare.col.tests'], ['diff', 'compare.col.diff'], ['steps', 'compare.col.steps'],
-    ['cost', table.priced ? 'compare.col.costPriced' : 'compare.col.costTokens'], ['wall', 'compare.col.wall'], ['marks', 'compare.col.marks'],
+    ['cost', 'compare.col.costTokens'], ['wall', 'compare.col.wall'], ['marks', 'compare.col.marks'],
   ] as const
   return (
     <>
@@ -297,10 +297,9 @@ function RowView({ entry, group, picked, onPick, setMark, t }: {
         <DiffSummary row={row} t={t} />
       </Cell>
       <Cell name="steps" label={t('compare.col.steps')}>{row.own.steps}</Cell>
-      <Cell name="cost" label={t(row.own.usd === undefined ? 'compare.col.costTokens' : 'compare.col.costPriced')}>
-        {row.own.usd === undefined
-          ? t('tree.tokens', { value: compactTokens(total, t) })
-          : usdText(row.own.usd.amount, t)}
+      <Cell name="cost" label={t('compare.col.costTokens')}>
+        {t('tree.tokens', { value: compactTokens(total, t) })}
+        {row.own.usd !== undefined && <span className={css.listPrice}>{t('compare.listPrice', { value: usdText(row.own.usd.amount, t) })}</span>}
       </Cell>
       <Cell name="wall" label={t('compare.col.wall')}>
         {row.wallMs === undefined ? t('compare.none') : durationText(row.wallMs, t)}

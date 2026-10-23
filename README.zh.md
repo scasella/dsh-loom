@@ -24,6 +24,8 @@ https://github.com/user-attachments/assets/3a35ceab-bd12-4e20-a4c9-b0bda106d687
 
 [Loom 用户指南](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/guide.zh.md)介绍各项使用流程。[文档索引](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/README.zh.md)汇集配置、兼容性和[验证说明](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/VERIFICATION.md)。npm 包包含中英文用户指南、配置参考和文档索引。运行时功能以及支持的 Harness/SDK 版本保持不变。
 
+源码工作区包含验收审查修复，但固定安装的 alpha.4 软件包尚未包含这些修复。分享导出文件前，请查看[审查处理记录](docs/review-resolutions.zh.md)，尤其是空 Weave 导出的限制。
+
 <a id="install"></a>
 ## 安装
 
@@ -50,10 +52,10 @@ dsh web --no-open --port 3097
 ## 首次使用
 
 1. 打开 **Settings → Models**，输入 provider 凭据，并在输入框中选择模型。凭据应保存在 Harness 设置中，不应放入本包。
-2. 选择可丢弃的 workspace，开始对话。完成一轮后，打开 Chat 旁的 **Loom**。
+2. 选择可丢弃的 workspace，开始对话。一轮对话结束后（包括失败的轮次），打开 Chat 旁的 **Loom**。
 3. 使用 **Regenerate ×2**，在 **Read** 中切换子分支，并将喜欢的分支标记为 **Keep**。打开侧边栏的 **Multiverse** 浏览家族。
 4. 修改代码前，先选择 worktree 隔离，再创建分支并查看 **Compare**。Git 仓库必须至少有一次提交，并允许 workspace 写入。
-5. 打开 **Weave** 进行散文写作。模型需要支持 assistant 前缀；概率探索还需要模型返回词元概率。
+5. 打开 **Weave** 撰写散文。请按 [Weave 提供商设置](docs/configuration.zh.md#weave-provider-setup)显式声明路由能力；仅选择目录模型不会启用助手前缀或概率。
 
 每个分支、散文续写和词元探测都可能产生付费模型调用。请从较小数量开始。默认不提供价格；配置后的美元数值为标价估算。让模型自主探索前，请设置分支数、深度、词元数和可选的美元预算。
 
@@ -67,7 +69,7 @@ Session 历史、散文与选择会持久保存。分支队列和自主预算保
 dsh plugin --profile web remove @scasella/dsh-loom
 ```
 
-使用同一个 home 和 profile，然后重启。移除操作撤销 bundle 的 provider 替换，不会删除 Session 历史。实验性 Loom 记录可能需要启用 Loom 才能完整呈现。
+使用同一个 home 和 profile，然后重启。Loom 中创建的模型仍保存在其兼容条目下，移除后不会显示在原版模型页面；重新安装 Loom 即可恢复，也可[在移除前转移模型设置](COMPATIBILITY.md#return-to-stock-model-settings)。凭证和会话历史仍保留在主目录中。实验性 Loom 记录可能需要启用 Loom 才能完整呈现。
 
 ## 构建与许可
 

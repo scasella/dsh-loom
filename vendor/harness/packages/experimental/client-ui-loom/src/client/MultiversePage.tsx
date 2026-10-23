@@ -9,6 +9,7 @@ import type { LoomReadSources } from './read-sources.ts'
 import type { MultiverseSearchValue } from './multiverse.ts'
 import { multiverseFamilies, multiverseSearchKey } from './multiverse.ts'
 import { sessionTitle } from './lineage.ts'
+import { loomSessionTitle, loomVariantLabel } from './labels.ts'
 import type { NS } from './locales.ts'
 import css from './MultiversePage.module.css'
 
@@ -70,7 +71,8 @@ export function MultiversePage({ useSessions, useLoomFamilySearch, openSession, 
               <span>{t('multiverse.branches', { count: family.nodes.length - 1 })}</span></h2>
             <ul>{family.nodes.map(node => (
               <li key={node.id}><button type="button" className={css.node} onClick={() => { openSession(node.sessionId) }}>
-                <span>{node.depth > 0 && <IconBranchOutlineRegular size={14} />}{sessionTitle(list, node.sessionId)}</span>
+                <span>{node.depth > 0 && <IconBranchOutlineRegular size={14} />}{loomSessionTitle(list, node.sessionId, t)}</span>
+                {loomVariantLabel(family, list, node.sessionId, t) !== undefined && <small>{loomVariantLabel(family, list, node.sessionId, t)}</small>}
                 {node.running && <span className={css.running}>{t('multiverse.running')}</span>}
                 {hits.has(node.sessionId) && <small>{hits.get(node.sessionId)}</small>}
               </button></li>

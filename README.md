@@ -24,6 +24,8 @@ The 3:54 captioned demo shows the same Loom features with real model calls on th
 
 The [Loom user guide](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/guide.md) covers every workflow. See the [documentation index](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/docs/README.md) for configuration, compatibility, and [verification](https://github.com/scasella/dsh-loom/blob/v0.1.0-alpha.4/VERIFICATION.md). The npm package includes the English and Chinese user guides, configuration reference, and documentation index. Runtime features and supported Harness/SDK versions are unchanged.
 
+The source checkout includes fixes from the acceptance review that are not yet published in the pinned alpha.4 package. See the [review resolutions](docs/review-resolutions.md), including the empty-Weave-export restriction, before sharing exports.
+
 <a id="install"></a>
 ## Install
 
@@ -50,10 +52,10 @@ If you already have custom profiles or model settings, read [configuration migra
 ## First run
 
 1. Open **Settings → Models**, enter your provider credentials, and select a model in the composer. Credentials belong in Harness settings, outside this package.
-2. Choose a disposable workspace and start a conversation. After a completed turn, open **Loom** beside Chat.
+2. Choose a disposable workspace and start a conversation. After a settled turn, including a failed one, open **Loom** beside Chat.
 3. Use **Regenerate ×2**, then switch between children in **Read** and mark a favorite **Keep**. Open **Multiverse** in the sidebar to browse families.
 4. For code edits, select worktree isolation before branching and inspect **Compare**. Use a Git repository with at least one commit and allow workspace writes.
-5. Open **Weave** for prose. Assistant-prefix support is required; probability exploration additionally requires model-reported token probabilities.
+5. Open **Weave** for prose. Configure an explicitly capable route using the [Weave provider setup](docs/configuration.md#weave-provider-setup); a catalog model alone does not enable assistant prefixes or probabilities.
 
 Each branch, prose continuation, and token probe can make paid model calls. Start with small counts. No prices ship by default; configured dollar figures are list-price estimates. Set autonomous branch, depth, token, and optional dollar budgets before model-driven exploration.
 
@@ -67,7 +69,7 @@ Export material you intend to keep, stop active branches, and clean up owned wor
 dsh plugin --profile web remove @scasella/dsh-loom
 ```
 
-Use the same home and profile, then restart. Removal withdraws the bundle's provider replacements; it does not delete Session histories. Experimental Loom records may need Loom enabled to render fully.
+Use the same home and profile, then restart. Models created in Loom remain saved under its compatibility entry and are hidden from the stock Models page after removal; reinstall Loom to restore them, or [transfer model settings before removal](COMPATIBILITY.md#return-to-stock-model-settings). Credentials and Session histories remain in the home. Experimental Loom records may need Loom enabled to render fully.
 
 ## Build and license
 

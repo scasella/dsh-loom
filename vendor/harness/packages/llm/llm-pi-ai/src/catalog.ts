@@ -925,7 +925,8 @@ export function resolveRouteModels(
     const api = request.api ?? base?.api ?? routeApi
     if (api === undefined) {
       invalid(provider, `model "${entry.id}" needs an api; the installed catalog does not describe it, so set the`
-        + ' route\'s api to the wire protocol its endpoint speaks')
+        + ' route\'s api to the wire protocol its endpoint speaks. In Settings → Models, choose Add model provider'
+        + ' → Custom model API, select the protocol, and enter the model ID there.')
     }
     const baseUrl = request.baseURL ?? base?.baseUrl ?? providerBaseUrl
     if (baseUrl === undefined) {

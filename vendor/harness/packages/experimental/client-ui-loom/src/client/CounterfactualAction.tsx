@@ -24,7 +24,7 @@ export type CounterfactualActionProps = PropsRuntime<'tool.call.actions'> & Inje
  * @returns the action and modal, or null before settlement.
  */
 export function CounterfactualAction(props: CounterfactualActionProps) {
-  if (props.phase !== 'result' || props.block.parentCallId !== undefined || !Number.isSafeInteger(props.block.seq)) return null
+  if (props.toolName.startsWith('loom_') || props.phase !== 'result' || props.block.parentCallId !== undefined || !Number.isSafeInteger(props.block.seq)) return null
   return <CounterfactualResult {...props} />
 }
 

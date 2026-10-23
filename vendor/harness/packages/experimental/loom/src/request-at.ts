@@ -142,6 +142,7 @@ export function messageRow(node: RebuiltRequestNode, inheritedEventCount: number
     role: role === 'developer' ? 'system' : role,
     inherited: node.seq < inheritedEventCount,
     preview: previewOf(text),
+    text,
     chars: Array.from(text).length,
   }
 }
@@ -187,7 +188,7 @@ function toolsOf(
       else if (block.type === 'tool-removal') removed.add(block.toolName)
     }
   }
-  return { names: (header.tools ?? []).map(tool => tool.name), addedThisTurn: [...added], removedThisTurn: [...removed] }
+  return { names: (header.tools ?? []).map(tool => tool.name), definitions: (header.tools ?? []).map(tool => JSON.stringify(tool, null, 2)), addedThisTurn: [...added], removedThisTurn: [...removed] }
 }
 
 /**

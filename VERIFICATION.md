@@ -2,6 +2,16 @@
 
 Verified on macOS with the official npm package `@deepseek-ai/dsh@0.2.1-rc.2`, its resolved `@earendil-works/pi-ai@1.3.0`, and pnpm 10.11.1. The reference fork stays at `77ccab27d200241ddf49d0ec9f5de1524343374f`; upstream source is `687f282e8625c6b8d11ff58211a90524be2e4317`. The standalone package neither links the reference checkout nor replaces official installation files.
 
+## Acceptance review corrections
+
+The source checkout after alpha.4 resolves the acceptance findings in [review resolutions](docs/review-resolutions.md). On 2026-10-23, the final installed-tarball run passed all 108 tests, with zero failures or skips, through the original official Harness CLI. Web readiness and authentication passed; removal restored the original profile bundle list. All 68,790 official runtime entries remained unchanged, with tree SHA-256 `2793c78161aab960abd97f386c5cc495d2c6b47f5095a19fc894958bd4728921` excluding the documented runtime cache. No paid model calls ran.
+
+The current build regenerates Loom's Remote metadata from repository sources and pinned published declarations before bundling. Two consecutive generations produced identical artifacts. Both strict TypeScript faces and the npm-selected-file privacy check passed. The new regression cases cover immediate child question/approval refusals, queue progress and reload, depth refusal, explicit export source codecs, empty-path privacy, export escaping/expiry, retained applied diffs and write-failure handling, running-sibling archive admission, isolation prerequisites, inherited test-output exclusion, real DOM keyboard behavior, settings transfer, and the documented provider configuration. DOM tests use presentation doubles; they do not establish browser geometry or new provider support.
+
+A separate keyless Chromium walk used a fresh original-launcher Web profile and five deterministically authored Sessions. It exercised root `g` branching with children present, `k`/`x` state changes, durable variant/sample labels, a filled branch form at 390 pixels, and the selected Compare row. Adopt, Apply, Continue, and Discard were visible and reachable; document/body widths remained 390 pixels. The browser checked display and controls without applying files or making provider calls.
+
+These fixes are local source changes and are not present in the immutable published alpha.4 npm archive. The original release evidence below remains historical evidence for that archive; it is not a claim that its audited defects were absent.
+
 ## Repeat the checks
 
 Build from this source project:
@@ -25,9 +35,9 @@ DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm run verify:stock -- \
 
 The verifier creates a private temporary home, installs through the original `dsh plugin` CLI, runs eight integration tests against the installed tarball, checks Web startup on an allocated port, removes the bundle through the same CLI, checks bundle rollback, and compares the original installation's files. It clears model keys, starts no paid calls, prints the archive checksum, and removes its temporary files and owned processes. It refuses a linked source checkout as the official runtime. It does not create a version exemption.
 
-For all 48 tests, set `LOOM_STOCK_NODE_MODULES` to the official installation's `node_modules` and `LOOM_INSTALLED_PACKAGE` to the bundle installed in an isolated Web profile, then run `DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm test`. The installed package is necessary: importing a development build beside development dependencies can create duplicate Session classes and is not a valid runtime proof.
+For the complete current suite, add `--all-tests` to the verifier command, or set `LOOM_STOCK_NODE_MODULES` to the official installation's `node_modules` and `LOOM_INSTALLED_PACKAGE` to the bundle installed in an isolated Web profile, then run `DEEPSEEK_API_KEY= OPENROUTER_DEEPSEEK_API_KEY= npm test`. The installed package is necessary: importing a development build beside development dependencies can create duplicate Session classes and is not a valid runtime proof.
 
-## Results
+## Original release results
 
 | Check | Result |
 | --- | --- |

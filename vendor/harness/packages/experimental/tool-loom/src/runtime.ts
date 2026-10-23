@@ -28,6 +28,7 @@ import { RemoteError, remoteErrorOf } from '@deepseek-ai/dsh-typert-protocol'
 import type {} from '@deepseek-ai/dsh-workspace'
 import type { BudgetValue, CullValue, ExpandChildValue, ExpandValue, KeepValue, ReadValue, WaitChildValue, WaitValue } from './schemas.ts'
 import type { AutoloomBudget, LoomMessageSource } from './types.ts'
+import { registerNonInteractiveChildren } from './non-interactive.ts'
 
 /** Limits the runtime enforces, after schema defaults. */
 export interface AutoloomLimits {
@@ -183,6 +184,7 @@ export class AutoloomRuntime {
    * @param limits - budgets and bounds after schema defaults.
    */
   constructor(private readonly ctx: Context, private readonly limits: AutoloomLimits) {
+    registerNonInteractiveChildren(ctx, agent => this.isAutoloomChild(agent))
     ctx.sessionProjections.onChanged((session, key) => {
       if (key === 'tokenUsage') this.observe(session)
     })
@@ -452,6 +454,19 @@ export class AutoloomRuntime {
     const child = this.childOf(agent, sessionId)
     await this.ctx.loom.mark({ sessionId: child.sessionId, mark: 'keep' })
     return { sessionId: child.sessionId, mark: 'keep' }
+  }
+
+  /** Classify loaded children from their durable first own prompt, including after a Host restart. */
+  private isAutoloomChild(agent: Agent): boolean {
+    const id = agent.session.id
+    const cached = this.autoloomChildren.get(id)
+    if (cached !== undefined) return cached
+    const first = agent.session.snapshotEvents().slice(agent.session.inheritedEventCount)
+      .find((event): event is SessionEvent<'user/message'> => event.type === 'user/message')
+    if (first === undefined) return false
+    const child = first.data.source.kind === 'loom'
+    this.autoloomChildren.set(id, child)
+    return child
   }
 
   /**

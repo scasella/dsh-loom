@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict'
 import { after, before, test } from 'node:test'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import { createRequire } from 'node:module'
 import { createHash } from 'node:crypto'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -264,4 +265,23 @@ test('leaves SDK Responses mid-conversation effort to the installed provider cat
     api: 'openai-responses', baseURL: 'https://loom-proof.invalid/v1',
     compat: { supportsMidConvoEffort: true }, models: [{ id: 'm' }],
   } }), /compat "supportsMidConvoEffort", which is not configurable here/)
+})
+
+
+test('the documented DeepSeek Weave overlay declares the required model capabilities', async () => {
+  const { parse } = createRequire(path.join(stockModules, '@deepseek-ai/dsh-app-boot/package.json'))('yaml')
+  const guide = await readFile(path.join(project, 'docs/configuration.md'), 'utf8')
+  const section = guide.split('<a id="weave-provider-setup"></a>')[1]
+  const yaml = /```yaml\n([\s\S]*?)```/u.exec(section)?.[1]
+  assert.ok(yaml)
+  const [overlay] = parse(yaml)
+  assert.equal(overlay.id, 'loom-compat-llm-pi-ai')
+  const profiles = privateLlm.resolveProfiles(overlay.config.providers)
+  const auth = { credentials: { read: async () => undefined, list: async () => [], modify: async () => undefined, delete: async () => undefined }, authContext: { env: async () => undefined, fileExists: async () => false } }
+  const adapter = new privateLlm.PiAiAdapter({ profiles: () => profiles, resolveApiKey: async () => undefined, auth })
+  const model = await adapter.resolveModel('loom-deepseek-beta', 'deepseek-flash')
+  assert.equal(model.assistantPrefill, 'tool-free')
+  assert.deepEqual(model.tokenLogprobs, { maxTopLogprobs: 20 })
+  assert.equal(profiles.get('loom-deepseek-beta').baseURL, 'https://api.deepseek.com/beta')
+  assert.throws(() => privateLlm.resolveProfiles({ openrouter: { models: [{ id: 'not-in-the-pinned-catalog' }] } }), /Custom model API/u)
 })

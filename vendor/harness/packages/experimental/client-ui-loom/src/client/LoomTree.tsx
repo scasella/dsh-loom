@@ -18,6 +18,7 @@ import { assertNever } from '@deepseek-ai/dsh-util-values'
 import { compactTokens, failureText, plural, pointReading, type LoomTranslate } from './format.ts'
 import { KeepGlyph, SetAsideGlyph } from './glyphs.tsx'
 import { projectionValuesOf } from './lineage.ts'
+import { loomSessionTitle, loomVariantLabel } from './labels.ts'
 import { useRefreshOnce } from './refresh.ts'
 import { buildLoomTree, sessionRowId, type LoomRowStatus, type LoomTreeRow } from './tree.ts'
 import type { LoomViewProps } from './LoomView.tsx'
@@ -129,12 +130,11 @@ export function LoomTree({
   const markFailure = family.nodes.map(node => marks[node.sessionId]).find(mark => mark?.status === 'failed')
   const missing = useMemo(() => {
     // A parent's outline names the turn a cut inside a turn falls in.
-    const parents = new Set(family.nodes.map(node => node.parentId))
     return family.nodes.filter((node) => {
       const values = projectionValuesOf(list, node.sessionId)
       return values?.sessionStats === undefined || values.tokenUsage === undefined
         || (node.parentId !== undefined && values.forkLineage === undefined)
-        || (parents.has(node.id) && values.turnOutline === undefined)
+        || values.turnOutline === undefined
     }).map(node => node.sessionId)
   }, [family, list])
   useRefreshOnce(missing, refreshProjection)
@@ -170,8 +170,8 @@ export function LoomTree({
     if (row.kind === 'session') void setMark(row.sessionId, row.mark === value ? null : value)
   }
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>, row: LoomTreeRow, index: number): void => {
-    if (event.altKey || event.ctrlKey || event.metaKey) return
-    switch (event.key) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.nativeEvent.isComposing) return
+    switch (event.key.length === 1 ? event.key.toLowerCase() : event.key) {
       case 'ArrowDown': focusRow(rows[index + 1]); break
       case 'ArrowUp': focusRow(rows[index - 1]); break
       case 'Home': focusRow(rows[0]); break
@@ -195,6 +195,7 @@ export function LoomTree({
       default: return
     }
     event.preventDefault()
+    event.stopPropagation()
   }
 
   return (
@@ -204,7 +205,9 @@ export function LoomTree({
       </p>
       <div role="tree" aria-label={t('tree.aria')} className={css.tree}>
         {rows.map((row, index) => {
-          const text = rowText(row, t)
+          const variant = row.kind === 'session' ? loomVariantLabel(family, list, row.sessionId, t) : undefined
+          const text = rowText(row.kind === 'session' ? { ...row, title: loomSessionTitle(list, row.sessionId, t) } : row, t)
+          if (variant !== undefined) text.name += t('list.sep') + variant
           const selected = row.kind === 'session' && row.sessionId === selectedSessionId
           return (
             <div
@@ -225,6 +228,7 @@ export function LoomTree({
               aria-current={row.kind === 'session' && row.current ? 'true' : undefined}
               className={classes(css.row, row.onPath && css.onPath, selected && css.selected, row.kind === 'point' && css.point)}
               style={{ marginLeft: (row.level - 1) * LEVEL_INDENT }}
+              onFocus={() => { actions.activated(row.id) }}
               onClick={() => { focusRow(row); activate(row) }}
               onKeyDown={(event) => { onKeyDown(event, row, index) }}
             >
@@ -249,6 +253,7 @@ export function LoomTree({
               </span>
               <span className={css.content}>
                 <span className={css.label}>{text.label}</span>
+                {variant !== undefined && <span className={css.summary}>{variant}</span>}
                 {text.summary !== '' && <span className={css.summary}>{text.summary}</span>}
               </span>
               {row.kind === 'session' && row.mark !== null && (

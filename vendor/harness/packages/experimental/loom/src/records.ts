@@ -2,7 +2,7 @@
 import { pluginRecordOf, type SessionEvent } from '@deepseek-ai/dsh-session'
 import { z } from 'zod'
 import { loomAdoptRecordSchema, loomBranchRecordSchema } from './projection.ts'
-import type { LoomBranchRecord, LoomIsolationEndRecord, LoomIsolationRecord } from './types.ts'
+import type { LoomAppliedDiffRecord, LoomBranchRecord, LoomIsolationEndRecord, LoomIsolationRecord } from './types.ts'
 
 const pathSchema = z.string().min(1)
 
@@ -21,6 +21,19 @@ export const loomIsolationEndRecordSchema: z.ZodType<LoomIsolationEndRecord> = z
   reason: z.enum(['applied', 'discarded']),
 }).strict()
 
+const countSchema = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER)
+
+/** Retained display evidence; unknown versions or malformed files are ignored without changing isolation state. */
+export const loomAppliedDiffRecordSchema: z.ZodType<LoomAppliedDiffRecord> = z.object({
+  version: z.literal(1),
+  summary: z.object({
+    files: z.array(z.object({ path: pathSchema, insertions: countSchema, deletions: countSchema }).strict()),
+    insertions: countSchema, deletions: countSchema, source: z.literal('worktree'),
+  }).strict(),
+  diffs: z.array(z.object({ path: pathSchema, unified: z.string() }).strict()),
+  truncated: z.boolean(),
+}).strict()
+
 /** The Loom facts one Session recorded itself. */
 export interface LoomOwnRecords {
   /** First valid own `plugin:loom/branch` record. */
@@ -29,6 +42,8 @@ export interface LoomOwnRecords {
   readonly isolation?: LoomIsolationRecord
   /** Whether a valid own `plugin:loom/isolation-end` record follows the isolation record. */
   readonly isolationEnded: boolean
+  /** Last valid own applied diff evidence following the isolation record. */
+  readonly appliedDiff?: LoomAppliedDiffRecord
   /** Whether a valid own `plugin:loom/adopt` record exists. */
   readonly adopted: boolean
 }
@@ -44,6 +59,7 @@ export function ownLoomRecords(events: readonly SessionEvent[], inheritedEventCo
   let branch: LoomBranchRecord | undefined
   let isolation: LoomIsolationRecord | undefined
   let isolationEnded = false
+  let appliedDiff: LoomAppliedDiffRecord | undefined
   let adopted = false
   for (const event of events.slice(inheritedEventCount)) {
     const record = pluginRecordOf(event)
@@ -57,6 +73,9 @@ export function ownLoomRecords(events: readonly SessionEvent[], inheritedEventCo
       case 'plugin:loom/isolation-end':
         isolationEnded ||= isolation !== undefined && loomIsolationEndRecordSchema.safeParse(record.data).success
         break
+      case 'plugin:loom/applied-diff':
+        if (isolation !== undefined) appliedDiff = loomAppliedDiffRecordSchema.safeParse(record.data).data ?? appliedDiff
+        break
       case 'plugin:loom/adopt':
         adopted ||= loomAdoptRecordSchema.safeParse(record.data).success
         break
@@ -69,6 +88,7 @@ export function ownLoomRecords(events: readonly SessionEvent[], inheritedEventCo
     ...branch === undefined ? {} : { branch },
     ...isolation === undefined ? {} : { isolation },
     isolationEnded,
+    ...appliedDiff === undefined ? {} : { appliedDiff },
     adopted,
   }
 }
